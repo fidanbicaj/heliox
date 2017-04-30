@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html>
+    {% load staticfiles %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="shortcut icon" href="{% static 'main/assets/images/favicon_1.ico' %}">
+
+        <title>Heliox</title>
+
+        <!--Morris Chart CSS -->
+
+        <link href="{% static 'main/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/core.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/components.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/pages.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/menu.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+        <link href="{% static 'main/assets/plugins/datatables/responsive.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/scroller.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/dataTables.colVis.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/dataTables.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="{% static 'main/assets/js/modernizr.min.js' %}"></script>
+    </head>
+
+
+    <body>
+
+      <header id="topnav">
+
+          <div class="navbar-custom">
+                <div class="container">
+                     <div class="topbar-main">
+                <div class="container">
+
+                    <!-- Logo container-->
+                    <div class="logo">
+                        <a href="{% url 'globe' %}"><img class="logo" style="width: 170px;" src="{% static 'main/assets/images/helioxlogo.png' %}"></a>
+                    </div>
+                    <!-- End Logo container-->
+
+
+                    <div class="menu-extras">
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'index' %}">
+                                    <button class="btn btn-purple btn-custom">Dashboard</button>
+                                </form>
+                            </li>
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'tasks' %}">
+                                    <button class="btn btn-purple btn-custom">Tasks</button>
+                                </form>
+                            </li>
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'logout' %}">
+                                    <button type="submit" class="btn btn-danger btn-custom waves-effect waves-light">Log Out</button>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <div class="menu-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      </header>
+        <!-- End Navigation Bar-->
+      <div class="wrapper">
+            <div class="container">
+                <div class="col-md-12">
+                    <ul class="nav nav-tabs tabs">
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="january">January</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="february">February</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="march">March</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="april">April</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="june">June</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="may">May</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="july">July</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="august">August</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="september">September</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="october">October</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="november">November</span>
+                            </a>
+                        </li>
+                        <li class="tab">
+                            <a>
+                                <span class="year" id="december">December</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <hr>
+                <div class="col-md-12">
+                    <div id="container" style="margin-top: 100px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'main/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/detect.js'%}"></script>
+        <script src="{% static 'main/assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'main/assets/js/waves.js' %}"></script>
+        <script src="{% static 'main/assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.scrollTo.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.core.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
+
+        <script src="{% static 'main/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.bootstrap.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/responsive.bootstrap.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.scroller.min.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'main/assets/globe/third-party/Detector.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/assets/globe/third-party/three.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'main/assets/globe/third-party/Tween.js' %}"></script>
+
+        <script type="text/javascript">
+            var DAT = DAT || {};
+
+            DAT.Globe = function(container, opts) {
+              opts = opts || {};
+
+              var colorFn = opts.colorFn || function(x) {
+                var c = new THREE.Color();
+                c.setHSL( ( 0.6 - ( x * 0.5 ) ), 1.0, 0.5 );
+                return c;
+              };
+              var imgDir = opts.imgDir || '/globe/';
+
+              var Shaders = {
+                'earth' : {
+                  uniforms: {
+                    'texture': { type: 't', value: null }
+                  },
+                  vertexShader: [
+                    'varying vec3 vNormal;',
+                    'varying vec2 vUv;',
+                    'void main() {',
+                      'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+                      'vNormal = normalize( normalMatrix * normal );',
+                      'vUv = uv;',
+                    '}'
+                  ].join('\n'),
+                  fragmentShader: [
+                    'uniform sampler2D texture;',
+                    'varying vec3 vNormal;',
+                    'varying vec2 vUv;',
+                    'void main() {',
+                      'vec3 diffuse = texture2D( texture, vUv ).xyz;',
+                      'float intensity = 1.05 - dot( vNormal, vec3( 0.0, 0.0, 1.0 ) );',
+                      'vec3 atmosphere = vec3( 1.0, 1.0, 1.0 ) * pow( intensity, 3.0 );',
+                      'gl_FragColor = vec4( diffuse + atmosphere, 1.0 );',
+                    '}'
+                  ].join('\n')
+                },
+                'atmosphere' : {
+                  uniforms: {},
+                  vertexShader: [
+                    'varying vec3 vNormal;',
+                    'void main() {',
+                      'vNormal = normalize( normalMatrix * normal );',
+                      'gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );',
+                    '}'
+                  ].join('\n'),
+                  fragmentShader: [
+                    'varying vec3 vNormal;',
+                    'void main() {',
+                      'float intensity = pow( 0.8 - dot( vNormal, vec3( 0, 0, 1.0 ) ), 12.0 );',
+                      'gl_FragColor = vec4( 1.0, 1.0, 1.0, 1.0 ) * intensity;',
+                    '}'
+                  ].join('\n')
+                }
+              };
+
+              var camera, scene, renderer, w, h;
+              var mesh, atmosphere, point;
+
+              var overRenderer;
+
+              var curZoomSpeed = 0;
+              var zoomSpeed = 50;
+
+              var mouse = { x: 0, y: 0 }, mouseOnDown = { x: 0, y: 0 };
+              var rotation = { x: 0, y: 0 },
+                  target = { x: Math.PI*3/2, y: Math.PI / 6.0 },
+                  targetOnDown = { x: 0, y: 0 };
+
+              var distance = 100000, distanceTarget = 100000;
+              var padding = 40;
+              var PI_HALF = Math.PI / 2;
+
+              function init() {
+
+                container.style.color = '#fff';
+                container.style.font = '13px/20px Arial, sans-serif';
+
+                var shader, uniforms, material;
+                w = container.offsetWidth || window.innerWidth;
+                h = container.offsetHeight || window.innerHeight;
+
+                camera = new THREE.PerspectiveCamera(30, w / h, 1, 10000);
+                camera.position.z = distance;
+
+                scene = new THREE.Scene();
+
+                var geometry = new THREE.SphereGeometry(200, 40, 30);
+
+                shader = Shaders['earth'];
+                uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+
+                uniforms['texture'].value = THREE.ImageUtils.loadTexture("{% static 'main/assets/globe/world.jpg' %}");
+
+                material = new THREE.ShaderMaterial({
+
+                      uniforms: uniforms,
+                      vertexShader: shader.vertexShader,
+                      fragmentShader: shader.fragmentShader
+
+                    });
+
+                mesh = new THREE.Mesh(geometry, material);
+                mesh.rotation.y = Math.PI;
+                scene.add(mesh);
+
+                shader = Shaders['atmosphere'];
+                uniforms = THREE.UniformsUtils.clone(shader.uniforms);
+
+                material = new THREE.ShaderMaterial({
+
+                      uniforms: uniforms,
+                      vertexShader: shader.vertexShader,
+                      fragmentShader: shader.fragmentShader,
+                      side: THREE.BackSide,
+                      blending: THREE.AdditiveBlending,
+                      transparent: true
+
+                    });
+
+                mesh = new THREE.Mesh(geometry, material);
+                mesh.scale.set( 1.1, 1.1, 1.1 );
+                scene.add(mesh);
+
+                geometry = new THREE.BoxGeometry(0.75, 0.75, 1);
+                geometry.applyMatrix(new THREE.Matrix4().makeTranslation(0,0,-0.5));
+
+                point = new THREE.Mesh(geometry);
+
+                renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+                renderer.setSize(w, h);
+
+                renderer.domElement.style.position = 'absolute';
+
+                container.appendChild(renderer.domElement);
+
+                container.addEventListener('mousedown', onMouseDown, false);
+
+                container.addEventListener('mousewheel', onMouseWheel, false);
+
+                document.addEventListener('keydown', onDocumentKeyDown, false);
+
+                window.addEventListener('resize', onWindowResize, false);
+
+                container.addEventListener('mouseover', function() {
+                  overRenderer = true;
+                }, false);
+
+                container.addEventListener('mouseout', function() {
+                  overRenderer = false;
+                }, false);
+              }
+
+              function addData(data, opts) {
+                var lat, lng, size, color, i, step, colorFnWrapper;
+
+                opts.animated = opts.animated || false;
+                this.is_animated = opts.animated;
+                opts.format = opts.format || 'magnitude'; // other option is 'legend'
+                if (opts.format === 'magnitude') {
+                  step = 3;
+                  colorFnWrapper = function(data, i) { return colorFn(data[i+2]); }
+                } else if (opts.format === 'legend') {
+                  step = 4;
+                  colorFnWrapper = function(data, i) { return colorFn(data[i+3]); }
+                } else {
+                  throw('error: format not supported: '+opts.format);
+                }
+
+                if (opts.animated) {
+                  if (this._baseGeometry === undefined) {
+                    this._baseGeometry = new THREE.Geometry();
+                    for (i = 0; i < data.length; i += step) {
+                      lat = data[i];
+                      lng = data[i + 1];
+            //        size = data[i + 2];
+                      color = colorFnWrapper(data,i);
+                      size = 0;
+                      addPoint(lat, lng, size, color, this._baseGeometry);
+                    }
+                  }
+                  if(this._morphTargetId === undefined) {
+                    this._morphTargetId = 0;
+                  } else {
+                    this._morphTargetId += 1;
+                  }
+                  opts.name = opts.name || 'morphTarget'+this._morphTargetId;
+                }
+                var subgeo = new THREE.Geometry();
+                for (i = 0; i < data.length; i += step) {
+                  lat = data[i];
+                  lng = data[i + 1];
+                  color = colorFnWrapper(data,i);
+                  size = data[i + 2];
+                  size = size*200;
+                  addPoint(lat, lng, size, color, subgeo);
+                }
+                if (opts.animated) {
+                  this._baseGeometry.morphTargets.push({'name': opts.name, vertices: subgeo.vertices});
+                } else {
+                  this._baseGeometry = subgeo;
+                }
+
+              };
+
+              function createPoints() {
+                if (this._baseGeometry !== undefined) {
+                  if (this.is_animated === false) {
+                    this.points = new THREE.Mesh(this._baseGeometry, new THREE.MeshBasicMaterial({
+                          color: 0xffffff,
+                          vertexColors: THREE.FaceColors,
+                          morphTargets: false
+                        }));
+                  } else {
+                    if (this._baseGeometry.morphTargets.length < 8) {
+                      console.log('t l',this._baseGeometry.morphTargets.length);
+                      var padding = 8-this._baseGeometry.morphTargets.length;
+                      console.log('padding', padding);
+                      for(var i=0; i<=padding; i++) {
+                        console.log('padding',i);
+                        this._baseGeometry.morphTargets.push({'name': 'morphPadding'+i, vertices: this._baseGeometry.vertices});
+                      }
+                    }
+                    this.points = new THREE.Mesh(this._baseGeometry, new THREE.MeshBasicMaterial({
+                          color: 0xffffff,
+                          vertexColors: THREE.FaceColors,
+                          morphTargets: true
+                        }));
+                  }
+                  scene.add(this.points);
+                }
+              }
+
+              function addPoint(lat, lng, size, color, subgeo) {
+
+                var phi = (90 - lat) * Math.PI / 180;
+                var theta = (180 - lng) * Math.PI / 180;
+
+                point.position.x = 200 * Math.sin(phi) * Math.cos(theta);
+                point.position.y = 200 * Math.cos(phi);
+                point.position.z = 200 * Math.sin(phi) * Math.sin(theta);
+
+                point.lookAt(mesh.position);
+
+                point.scale.z = Math.max( size, 0.1 ); // avoid non-invertible matrix
+                point.updateMatrix();
+
+                for (var i = 0; i < point.geometry.faces.length; i++) {
+
+                  point.geometry.faces[i].color = color;
+
+                }
+                if(point.matrixAutoUpdate){
+                  point.updateMatrix();
+                }
+                subgeo.merge(point.geometry, point.matrix);
+              }
+
+              function onMouseDown(event) {
+                event.preventDefault();
+
+                container.addEventListener('mousemove', onMouseMove, false);
+                container.addEventListener('mouseup', onMouseUp, false);
+                container.addEventListener('mouseout', onMouseOut, false);
+
+                mouseOnDown.x = - event.clientX;
+                mouseOnDown.y = event.clientY;
+
+                targetOnDown.x = target.x;
+                targetOnDown.y = target.y;
+
+                container.style.cursor = 'move';
+              }
+
+              function onMouseMove(event) {
+                mouse.x = - event.clientX;
+                mouse.y = event.clientY;
+
+                var zoomDamp = distance/1000;
+
+                target.x = targetOnDown.x + (mouse.x - mouseOnDown.x) * 0.005 * zoomDamp;
+                target.y = targetOnDown.y + (mouse.y - mouseOnDown.y) * 0.005 * zoomDamp;
+
+                target.y = target.y > PI_HALF ? PI_HALF : target.y;
+                target.y = target.y < - PI_HALF ? - PI_HALF : target.y;
+              }
+
+              function onMouseUp(event) {
+                container.removeEventListener('mousemove', onMouseMove, false);
+                container.removeEventListener('mouseup', onMouseUp, false);
+                container.removeEventListener('mouseout', onMouseOut, false);
+                container.style.cursor = 'auto';
+              }
+
+              function onMouseOut(event) {
+                container.removeEventListener('mousemove', onMouseMove, false);
+                container.removeEventListener('mouseup', onMouseUp, false);
+                container.removeEventListener('mouseout', onMouseOut, false);
+              }
+
+              function onMouseWheel(event) {
+                event.preventDefault();
+                if (overRenderer) {
+                  zoom(event.wheelDeltaY * 0.3);
+                }
+                return false;
+              }
+
+              function onDocumentKeyDown(event) {
+                switch (event.keyCode) {
+                  case 38:
+                    zoom(100);
+                    event.preventDefault();
+                    break;
+                  case 40:
+                    zoom(-100);
+                    event.preventDefault();
+                    break;
+                }
+              }
+
+              function onWindowResize( event ) {
+                camera.aspect = container.offsetWidth / container.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize( container.offsetWidth, container.offsetHeight );
+              }
+
+              function zoom(delta) {
+                distanceTarget -= delta;
+                distanceTarget = distanceTarget > 1000 ? 1000 : distanceTarget;
+                distanceTarget = distanceTarget < 350 ? 350 : distanceTarget;
+              }
+
+              function animate() {
+                requestAnimationFrame(animate);
+                render();
+              }
+
+              function render() {
+                zoom(curZoomSpeed);
+
+                rotation.x += (target.x - rotation.x) * 0.1;
+                rotation.y += (target.y - rotation.y) * 0.1;
+                distance += (distanceTarget - distance) * 0.3;
+
+                camera.position.x = distance * Math.sin(rotation.x) * Math.cos(rotation.y);
+                camera.position.y = distance * Math.sin(rotation.y);
+                camera.position.z = distance * Math.cos(rotation.x) * Math.cos(rotation.y);
+
+                camera.lookAt(mesh.position);
+
+                renderer.render(scene, camera);
+              }
+
+              init();
+              this.animate = animate;
+
+
+              this.__defineGetter__('time', function() {
+                return this._time || 0;
+              });
+
+              this.__defineSetter__('time', function(t) {
+                var validMorphs = [];
+                var morphDict = this.points.morphTargetDictionary;
+                for(var k in morphDict) {
+                  if(k.indexOf('morphPadding') < 0) {
+                    validMorphs.push(morphDict[k]);
+                  }
+                }
+                validMorphs.sort();
+                var l = validMorphs.length-1;
+                var scaledt = t*l+1;
+                var index = Math.floor(scaledt);
+                for (i=0;i<validMorphs.length;i++) {
+                  this.points.morphTargetInfluences[validMorphs[i]] = 0;
+                }
+                var lastIndex = index - 1;
+                var leftover = scaledt - index;
+                if (lastIndex >= 0) {
+                  this.points.morphTargetInfluences[lastIndex] = 1 - leftover;
+                }
+                this.points.morphTargetInfluences[index] = leftover;
+                this._time = t;
+              });
+
+              this.addData = addData;
+              this.createPoints = createPoints;
+              this.renderer = renderer;
+              this.scene = scene;
+
+              return this;
+
+            };
+        </script>
+
+        <script type="text/javascript">
+          if(!Detector.webgl){
+            Detector.addGetWebGLMessage();
+          } else {
+
+            var months = ['january','february','march','april','may','june','july','august','september','october','november','december'];
+            var container = document.getElementById('container');
+            var globe = new DAT.Globe(container);
+
+            console.log(globe);
+            var i, tweens = [];
+
+            var settime = function(globe, t) {
+              return function() {
+                new TWEEN.Tween(globe).to({time: t/months.length},500).easing(TWEEN.Easing.Cubic.EaseOut).start();
+                var y = document.getElementById(months[t]);
+                if (y.getAttribute('class') === 'year active') {
+                  return;
+                }
+                var yy = document.getElementsByClassName('year');
+                for(i=0; i<yy.length; i++) {
+                  yy[i].setAttribute('class','year');
+                }
+                y.setAttribute('class', 'year active');
+              };
+            };
+
+            for(var i = 0; i<months.length; i++) {
+              var y = document.getElementById(months[i]);
+              console.log(y);
+              y.addEventListener('mouseover', settime(globe,i), false);
+            }
+
+            TWEEN.start();
+              var data = [["january", [60, -95, 0.13094308641221789, 25, 17, 0.9063953308409338, 1, 7, 0.7843457347993401, 8, -66, 0.16691298445258307, 12, -15, 0.17870093057071723, 42, 19, 0.21394500732421876, 56, 24, 0.05501370747884115, 13, 105, 0.5114994780909378, -15, -5, 0.21407344759183544, 47, 8, 0.06837164137098524, 8, 38, 0.4739500596788194, 12, -69, 0.9651972616070654, -26, 31, 0.3472647285347419, -34, -64, 0.7675849374128194, 6, 12, 0.26188324441176725, 13, -2, 0.32511124700825766, 40, 60, 0.0531309833786725, 8, -2, 0.09430400194268673, 25, 45, 0.5072301400480548, -2, 30, 0.4980942320055277, 8, 1, 0.571512025024206, 36, 138, 0.27062281290690104, -14, -170, 0.1508701267243573, 16, -62, 0.22847642635422172, 19, 166, 0.431345452202691, -12, 96, 0.14102148396446879, -24, -127, 0.9803566347300136, 15, -90, 0.4221175808376736, 44, 18, 0.14389041476779513, 29, 47, 0.010304375966295742, 60, 100, 0.6179893414247531, 31, 36, 0.26365003797743053, 18, -64, 0.38565751817491317, 15, -61, 0.4174901326497396, 6, -9, 0.15491186344427, 3, 73, 0.41109710693359375, 6, 158, 0.34229997339397633, 18, -77, 0.010451653215373558, 21, 57, 0.7819325778587312, 14, -61, 0.4174901326497396, 41, 20, 0.4281820784423487, -1, 11, 0.5300571796563405, -19, -169, 0.8705551539685117, 43, 7, 0.21188727484809028, -13, -176, 0.3964271271635996, -41, 174, 0.3526675075954861, 18, -64, 0.38565751817491317, 49, -2, 0.08617842780219184, 42, 1, 0.24838251749674478, 15, 48, 0.8789414000803785, 72, -40, 0.6277061323218708, -13, -172, 0.3708018843385713, -29, 167, 0.26213534699458096, 24, 54, 0.42549072265625, 8, -5, 0.30230243890372543, 20, 77, 0.15222344744958238, 40, 47, 0.8060420809676647, -29, 28, 0.8372057457856357, 13, -61, 0.4174901326497396, 1, 38, 0.4484380764431424, 22, 113, 0.2510997856987847, 13, 144, 0.3293982950846354, 39, 35, 0.9042218683139739, 33, 65, 0.38742073406346156, 24, 90, 0.4066860622829861, 20, -12, 0.8383180019466557, -8, 159, 0.5586782613946558, 21, -71, 0.3835085566328188, 13, -61, 0.4174901326497396, 43, 12, 0.09027427673339844, -15, -140, 0.9000754515770654, 46, 2, 0.14939761691623263, 41, 22, 0.10145840115017361, 35, 38, 0.03020206637413081, 32, -64, 0.5767227243373976, 48, 19, 0.1115718756781684, 10, 49, 0.2962365051015339, -10, -76, 0.6787232648767055, -16, 167, 0.8903753478788448, 0, 166, 0.5841344696425469, -4, 55, 0.44354502127877493, 62, 10, 0.8845564991844546, -13, 34, 0.8631371249730021, -21, -159, 0.41923138369055657, 9, 2, 0.47503795374883073, 0, 25, 0.8315101224325594, 21, -80, 0.36257676866319444, 32, 53, 0.29550889756944443, -51, -59, 0.022185831727720817, -12, 45, 0.8617057922353158, 41, 12, 0.12005614386664497, 35, 105, 0.26249125162760417, 40, 45, 0.76221998441002, -8, 125, 0.39061204266420857, 19, -70, 0.9607724079127928, 49, 32, 0.8377632365893708, 26, 50, 0.36208311386896164, -20, -175, 0.42075765460827685, 19, -80, 0.9797335512714851, 24, -13, 0.14532731099059537, 64, 26, 0.3744175377862051, 7, 21, 0.40912678634813493, -21, 165, 0.261484448247405, -20, 57, 0.9826869245807542, 39, 71, 0.0819695547801641, 47, 9, 0.1833308580186632, -27, 133, 0.8958431516010762, 17, -4, 0.6095425673000129, 62, 15, 0.03110512203640408, 43, 25, 0.18002373589409723, 38, -97, 0.6086479394005135, 46, 25, 0.16423372056749133, -12, 18, 0.7506829840556404, -43, 67, 0.4232213873270374, 15, 19, 0.19152004541534817, -29, 24, 0.2731427979807408, -9, -172, 0.6139841465331832, 35, 33, 0.2790289306640625, -54, -37, 0.4391151065039497, 4, 114, 0.3536139933268229, 25, 51, 0.7287424567604972, 2, 112, 0.6486932508722123, 47, 13, 0.10911646525065104, -18, 35, 0.15458232448839704, 1, 32, 0.9207873307801275, 47, 20, 0.09843822903103298, 16, 8, 0.4324374921969727, 54, -4, 0.06523341284857856, -10, -55, 0.7410450650975503, 62, -7, 0.7826820291023667, 11, -10, 0.6205378541224563, 9, -80, 0.43304049301075864, 37, 127, 0.21132626003689237, 10, -84, 0.566835427121434, 49, 6, 0.10077818976508246, 16, -24, 0.07597283337054983, 24, -76, 0.7693396177403945, 36, -5, 0.2723965793185764, 53, -8, 0.0875028567843967, 30, 70, 0.48901093916732363, 7, 134, 0.32871300591362845, 10, 8, 0.3553559289601975, -2, -77, 0.24284216628694089, 49, 15, 0.05398723602294922, 16, 106, 0.6260497203846601, 53, 28, 0.058958125644259986, 28, 3, 0.022877758658991443, 46, 15, 0.10093255784776475, 13, -88, 0.49130262586805556, -8, 178, 0.00959837511693884, 46, -56, 0.7661940423352508, 9, 168, 0.44185482449001734, -30, -71, 0.31260986688817727, 18, -66, 0.42161532931857637, 50, 4, 0.0686305660671658, 1, 173, 0.2295019980497527, 19, -72, 0.9692649197099314, 17, -88, 0.3249517483181424, 22, 114, 0.21657546997070312, 8, -11, 0.015766510149683, 42, 43, 0.9227468249390927, 18, 105, 0.1511437134163518, -21, 55, 0.20282962203669552, 23, -102, 0.6433227147659203, 13, -16, 0.52044494152412, 13, 122, 0.03939758075221589, 32, -5, 0.6795138915766155, 45, 15, 0.10093255784776475, 46, 105, 0.8513696330725703, 49, -2, 0.08617842780219184, 15, 100, 0.3909631686740451, -22, 17, 0.5893537824934822, 12, -61, 0.9252777791274672, 23, 121, 0.02967545463665855, 33, 44, 0.9104328821909237, -6, 35, 0.7736991338937524, 39, -8, 0.24645533243815104, 59, 26, 0.03465617921617296, -33, -56, 0.3413081529405382, 2, 10, 0.8285868976352455, 33, 35, 0.29132320827907987, 78, 20, 0.8492182199749961, 41, 64, 0.8410223166540352, 34, 9, 0.2513968225187373, 11, 43, 0.053532741171869125, -53, 72, 0.3519473262120756, 17, -61, 0.2552512791682665, 40, -4, 0.2636040412055122, 4, -72, 0.07102077448062571, -3, 30, 0.6150176721277432, -18, 175, 0.008901662156678203, 13, -59, 0.5550730799940811, -20, 47, 0.34328023274739583, 42, 12, 0.11934765285915798, 27, 90, 0.4415718248155382, 15, 30, 0.34375471216829967, -17, -65, 0.13956305339667807, 28, 84, 0.3212241181439145, 35, 14, 0.1506073506673177, 52, 5, 0.07801386515299479, 15, 145, 0.8120757594649263, 4, -56, 0.868163060125052, 18, -63, 0.7833040163096359, 12, -68, 0.08442248153058673, -10, 105, 0.7552240175285804, -5, 120, 0.6996580035384647, 65, -18, 0.25569108311692246, -15, 30, 0.32315277984223745, 14, -14, 0.6680381790883769, -6, 147, 0.8702847544331817, 17, -62, 0.7259875067305169, 11, -61, 0.14871031766811094, -20, 30, 0.6984892034957975, 51, 9, 0.05816790262858073, 56, 10, 0.405292484383734, 48, 68, 0.9478919830519265, 52, 20, 0.10723921881781684, 47, 29, 0.10033047993977864, 15, 39, 0.19519291441659947, 41, 75, 0.9404356367982529, -6, 71, 0.12768611051331769, 40, 127, 0.2188555908203125, 31, 34, 0.33429931640625, 7, 81, 0.39717220730251734, 57, 25, 0.4430815071495353, 5, -59, 0.6276043320002266, 16, -61, 0.902004921570986, 15, -86, 0.340873786078559, 22, 98, 0.6485453511754927, -54, 3, 0.513442770553942, 27, 30, 0.001656411577559136, 13, -85, 0.8598816915550601, 1, 103, 0.31713219536675347, 44, 21, 0.13229364183213976, -22, 24, 0.7501517487164452, 54, -2, 0.060493079291449654, -90, 0, 0.27902766552170044, -1, 15, 0.9805023721363667, 39, 22, 0.1709027608235677, -23, -58, 0.176064225131215, 4, -53, 0.012448137764131784]],
+                         ["february", [60, -95, 0.23537840101453994, 25, 17, 0.7213163644463322, 1, 7, 0.2745519340939685, 8, -66, 0.3508444295874865, 12, -15, 0.9597817179038036, 42, 19, 0.27387632581922744, 56, 24, 0.0984102291531033, 13, 105, 0.28267667121169526, -15, -5, 0.7275728178710053, 47, 8, 0.11049090067545574, 8, 38, 0.3962119886610243, 12, -69, 0.2377524805980582, -26, 31, 0.7883920569722394, -34, -64, 0.7693312331657385, 6, 12, 0.3009614482146862, 13, -2, 0.3215283781131306, 40, 60, 0.20477985042139668, 8, -2, 0.9705254866889009, 25, 45, 0.6081216706789493, -2, 30, 0.9024055913021548, 8, 1, 0.8913664155243736, 36, 138, 0.27231804741753474, -14, -170, 0.22342474177970995, 16, -62, 0.6707451001366421, 19, 166, 0.40497500949435766, -12, 96, 0.32363890460245637, -24, -127, 0.949532761353009, 15, -90, 0.4028373209635417, 44, 18, 0.1686969502766927, 29, 47, 0.45555004228825813, 60, 100, 0.9358659010061255, 31, 36, 0.2924428304036458, 18, -64, 0.3943254937065972, 15, -61, 0.38677720811631944, 6, -9, 0.41625996237430263, 3, 73, 0.386947258843316, 6, 158, 0.02810151012426365, 18, -77, 0.36986563588440846, 21, 57, 0.2454330967265954, 14, -61, 0.38677720811631944, 41,   20, 0.9760246134527112, -1, 11, 0.45465372213452404, -19, -169, 0.782705290336486, 43, 7, 0.24790113661024304, -13, -176, 0.8148010117426896, -41, 174, 0.2500924343532986, 18, -64, 0.3943254937065972, 49, -2, 0.15476055569118924, 42, 1, 0.25048880683051217, 15, 48, 0.3530370323323183, 72, -40, 0.5173313854888117, -13, -172, 0.8694504924701411, -29, 167, 0.22276142002522914, 24, 54, 0.4356815592447917, 8, -5, 0.8780721443971816, 20, 77, 0.2165170332907781, 40, 47, 0.373899762068013, -29, 28, 0.24602863948075093, 13, -61, 0.38677720811631944, 1, 38, 0.39951168484157984, 22, 113, 0.17254850599500868, 13, 144, 0.2773685540093316, 39, 35, 0.42699790167506524, 33, 65, 0.5557422575176666, 24, 90, 0.3790575154622396, 20, -12, 0.7181933532087909, -8, 159, 0.5057459618706545, 21, -71, 0.6879660180144015, 13, -61, 0.38677720811631944, 43, 12, 0.1238063727484809, -15, -140, 0.5321217458263894, 46, 2, 0.1916878424750434, 41, 22, 0.1543507554796007, 35, 38, 0.15067786652831117, 32, -64, 0.8029867582011935, 48, 19, 0.11860193888346354, 10, 49, 0.026737582487236677, -10, -76, 0.7626439399681375, -16, 167, 0.10366803881267772, 0, 166, 0.5210236734955269, -4, 55, 0.7901839666939933, 62, 10, 0.3807733545798193, -13, 34, 0.15384629141956485, -21, -159, 0.2603256683568347, 9, 2, 0.7433760323694969, 0, 25, 0.9332863750901047, 21, -80, 0.34655524359809026, 32, 53, 0.3750463528103299, -51, -59, 0.16159125006230146, -12, 45, 0.10104825039562637, 41, 12, 0.14756234063042534, 35, 105, 0.1960235595703125, 40, 45, 0.48603529046258265, -8, 125, 0.9400773471701943, 19, -70, 0.42202809576780953, 49, 32, 0.3579810458017665, 26, 50, 0.5258059694710239, -20, -175, 0.675975477058005, 19, -80, 0.7594948947541686, 24, -13, 0.39663177756383705, 64, 26, 0.886189917844434, 7, 21, 0.5514264395820525, -21, 165, 0.343754204346606, -20, 57, 0.8036101555161721, 39, 71, 0.7043116717262091, 47, 9, 0.16901470608181424, -27, 133, 0.641139061036864, 17, -4, 0.7044061134861398, 62, 15, 0.06810323079427083, 43, 25, 0.1803082953559028, 38, -97, 0.03261434952278808, 46, 25, 0.18205093383789062, -12, 18, 0.06005414634132589, -43, 67, 0.23042074248456967, 15, 19, 0.689095881312632, -29, 24, 0.5946705684993604, -9, -172, 0.9899606639539263, 35, 33, 0.29238901774088544, -54, -37, 0.008425331199942376, 4, 114, 0.3017875501844618, 25, 51, 0.14180943621847564, 2, 112, 0.9767136471538888, 47, 13, 0.14042171054416233, -18, 35, 0.758767961443015, 1, 32, 0.9020187889507314, 47, 20, 0.16904647827148436, 16, 8, 0.7176002329609013, 54, -4, 0.10442959255642362, -10, -55, 0.24878837804487175, 62, -7, 0.5870321996744183, 11, -10, 0.8306153862136642, 9, -80, 0.26808531068915686, 37, 127, 0.23809602525499132, 10, -84, 0.11783509432002526, 49, 6, 0.166246337890625, 16, -24, 0.3341171642226166, 24, -76, 0.391934149387811, 36, -5, 0.2690545654296875, 53, -8, 0.10956867641872829, 30, 70, 0.25833335873418506, 7, 134, 0.30551588270399305, 10, 8, 0.688882609260127, -2, -77, 0.4238659442284115, 49, 15, 0.12395592583550347, 16, 106, 0.9880861207447689, 53, 28, 0.11124855041503906, 28, 3, 0.021509713902617467, 46, 15, 0.13440133836534288, 13, -88, 0.42868726942274304, -8, 178, 0.9021454917663675, 46, -56, 0.8906921785570611, 9, 168, 0.3932212660047743, -30, -71, 0.10208146821738773, 18, -66, 0.350074462890625, 50, 4, 0.1094223870171441, 1, 173, 0.5485642844309956, 19, -72, 0.5762667725500085, 17, -88, 0.31853447808159724, 22, 114, 0.18489471435546875, 8, -11, 0.26764280856459444, 42, 43, 0.808993570264113, 18, 105, 0.32208053066147146, -21, 55, 0.9897831600195792, 23, -102, 0.45087029769797227, 13, -16, 0.9774469934614307, 13, 122, 0.9024483788893494, 32, -5, 0.5761945347264994, 45, 15, 0.13440133836534288, 46, 105, 0.6307797660347744, 49, -2, 0.15476055569118924, 15, 100, 0.35452579074435764, -22, 17, 0.3341218875738118, 12, -61, 0.5675336006759009, 23, 121, 0.18433127788066261, 33, 44, 0.3174403410294192, -6, 35, 0.4122972934001936, 39, -8, 0.22643580118815104, 59, 26, 0.11671856350368924, -33, -56, 0.26520234849717883, 2, 10, 0.5045800332538257, 33, 35, 0.3063734944661458, 78, 20, 0.6625089536484442, 41, 64, 0.6489368116930584, 34, 9, 0.1946846815688622, 11, 43, 0.6729612745167262, -53, 72, 0.9885983579935327, 17, -61, 0.5421996397963603, 40, -4, 0.2725400119357639, 4, -72, 0.43234900513603514, -3, 30, 0.3264814423369602, -18, 175, 0.9758651462801767, 13, -59, 0.9734403469751616, -20, 47, 0.2558533223470052, 42, 12, 0.1470204840766059, 27, 90, 0.41022074381510415, 15, 30, 0.1139114189554532, -17, -65, 0.45620513972830434, 28, 84, 0.4338707927328017, 35, 14, 0.194467044406467, 52, 5, 0.13663724263509114, 15, 145, 0.7601452611440377, 4, -56, 0.7504098355625889, 18, -63, 0.2512002585736488, 12, -68, 0.6399287758348404, -10, 105, 0.6117695538604101, -5, 120, 0.27716587571860407, 65, -18, 0.8340370972030713, -15, 30, 0.45090725830838985, 14, -14, 0.7464013032617207, -6, 147, 0.5601525140052276, 17, -62, 0.28575853363172643, 11, -61, 0.9540591681351389, -20, 30, 0.7113464464851359, 51, 9, 0.13112042744954427, 56, 10, 0.5547691409869534, 48, 68, 0.7459115274471216, 52, 20, 0.09768458896213107, 47, 29, 0.14611972384982638, 15, 39, 0.5954099932035043, 41, 75, 0.37507538708618626, -6, 71, 0.3820015410107226, 40, 127, 0.24809260050455728, 31, 34, 0.3189680650499132, 7, 81, 0.38555443657769095, 57, 25, 0.02520361280371297, 5, -59, 0.29561181890917965, 16, -61, 0.7158297934184586, 15, -86, 0.3463387722439236, 22, 98, 0.5140372138611017, -54, 3, 0.27001977304921665, 27, 30, 0.897091421716835, 13, -85, 0.73756638037142, 1, 103, 0.29764672173394097, 44, 21, 0.181497802734375, -22, 24, 0.22245013167280958, 54, -2, 0.11227406819661458, -90, 0, 0.006039861895657639, -1, 15, 0.06489750886742895, 39, 22, 0.20127283732096354, -23, -58, 0.6918170603341317, 4, -53, 0.9338527507276261]],
+                         ["march", [60, -95, 0.36850209554036456, 25, 17, 0.08682893754934518, 1, 7, 0.3125954149628799, 8, -66, 0.429394138059806, 12, -15, 0.07569264919487606, 42, 19, 0.3384195963541667, 56, 24, 0.18699144151475694, 13, 105, 0.5731804173195487, -15, -5, 0.6171059942520376, 47, 8, 0.20091871473524306, 8, 38, 0.3833501519097222, 12, -69, 0.24540748379931887, -26, 31, 0.1233032815800682, -34, -64, 0.040790347900296675, 6, 12, 0.24779477221602986, 13, -2, 0.04988975894291303, 40, 60, 0.11572802834507745, 8, -2, 0.5283703780851877, 25, 45, 0.8060842291722387, -2, 30, 0.8302095280869384, 8, 1, 0.6771353400292622, 36, 138, 0.3437201944986979, -14, -170, 0.4492050533015325, 16, -62, 0.7493661056260222, 19, 166, 0.42597649468315973, -12, 96, 0.4958494693653728, -24, -127, 0.708185223139656, 15, -90, 0.4076965671115451, 44, 18, 0.26913501315646704, 29, 47, 0.3371874011800886, 60, 100, 0.24083041804804095, 31, 36, 0.3726449924045139, 18, -64, 0.4210917154947917, 15, -61, 0.3860306125217014, 6, -9, 0.8536680200325568, 3, 73, 0.38492584228515625, 6, 158, 0.1566038217606316, 18, -77, 0.9278994696614583, 21, 57, 0.4959468692399144, 14, -61, 0.3860306125217014, 41, 20, 0.32944906323570335, -1, 11, 0.18396831501294897, -19, -169, 0.5998470427936922, 43, 7, 0.31842447916666666, -13, -176, 0.6768861895258003, -41, 174, 0.15877958509657117, 18, -64, 0.4210917154947917, 49, -2, 0.2571726820203993, 42, 1, 0.3089596218532986, 15, 48, 0.4735046298094695, 72, -40, 0.6496900368049127, -13, -172, 0.6013102266332645, -29, 167, 0.8947568893987649, 24, 54, 0.4178050062391493, 8, -5, 0.369932286589841, 20, 77, 0.15051474906159912, 40, 47, 0.8478911139546398, -29, 28, 0.7663470812550593, 13, -61, 0.3860306125217014, 1, 38, 0.3640822347005208, 22, 113, 0.1779054938422309, 13, 144, 0.3723378499348958, 39, 35, 0.9256560271641484, 33, 65, 0.3301547437863621, 24, 90, 0.4052841525607639, 20, -12, 0.5554777486267478, -8, 159, 0.2137111392482357, 21, -71, 0.14408343704609272, 13, -61, 0.3860306125217014, 43, 12, 0.2196435546875, -15, -140, 0.4660867079121135, 46, 2, 0.26756312052408854, 41, 22, 0.18074378119574652, 35, 38, 0.7930521024050302, 32, -64, 0.31755314966858617, 48, 19, 0.20076307508680555, 10, 49, 0.6320407545050349, -10, -76, 0.6917035852514359, -16, 167, 0.2042595304367254, 0, 166, 0.467488708566415, -4, 55, 0.21024028329142874, 62, 10, 0.8491388851405748, -13, 34, 0.2422024462005885, -21, -159, 0.0003343270762532491, 9, 2, 0.5036776834574537, 0, 25, 0.6097011580746824, 21, -80, 0.4059284464518229, 32, 53, 0.35897837320963544, -51, -59, 0.322049547373632, -12, 45, 0.1098790375441916, 41, 12, 0.2437927754720052, 35, 105, 0.2077240498860677, 40, 45, 0.6012819466820516, -8, 125, 0.40671878732033784, 19, -70, 0.013142175847060789, 49, 32, 0.5717830232236676, 26, 50, 0.4211467716609182, -20, -175, 0.6214514180476697, 19, -80, 0.2615373341304359, 24, -13, 0.2034350404061549, 64, 26, 0.8722919613737524, 7, 21, 0.7376269953968332, -21, 165, 0.3359011435051028, -20, 57, 0.7184151854707772, 39, 71, 0.04987157629072514, 47, 9, 0.2575911288791233, -27, 133, 0.8791905554414523, 17, -4, 0.35854085189910956, 62, 15, 0.20737418280707465, 43, 25, 0.2297060987684462, 38, -97, 0.7947537706133063, 46, 25, 0.2964609103732639, -12, 18, 0.11843532106070653, -43, 67, 0.3335995634157717, 15, 19, 0.029095374905324656, -29, 24, 0.49685899227954367, -9, -172, 0.22277402268415958, 35, 33, 0.3644784206814236, -54, -37, 0.05540854511875215, 4, 114, 0.3447060139973958, 25, 51, 0.9212034923439348, 2, 112, 0.5151548334092476, 47, 13, 0.22060568915473092, -18, 35, 0.7863603986023424, 1, 32, 0.3143562336648974, 47, 20, 0.23774210611979166, 16, 8, 0.9198251670129501, 54, -4, 0.17695654975043404, -10, -55, 0.11279215129443476, 62, -7, 0.39139030257520446, 11, -10, 0.23715186534349375, 9, -80, 0.5626899905334534, 37, 127, 0.2762520853678385, 10, -84, 0.17214225332612576, 49, 6, 0.22628514607747396, 16, -24, 0.9940056937597905, 24, -76, 0.7514176761803375, 36, -5, 0.3352325439453125, 53, -8, 0.195220947265625, 30, 70, 0.3129144890519284, 7, 134, 0.3325014919704861, 10, 8, 0.1534175312200009, -2, -77, 0.7691572949250673, 49, 15, 0.19281636555989584, 16, 106, 0.3851671975284575, 53, 28, 0.2021351623535156, 28, 3, 0.5116989109535314, 46, 15, 0.20393417358398438, 13, -88, 0.42962731255425346, -8, 178, 0.8896934700532247, 46, -56, 0.04248869360562657, 9, 168, 0.3713695271809896, -30, -71, 0.9025392825517861, 18, -66, 0.42870724148220485, 50, 4, 0.15770085652669272, 1, 173, 0.5177838531840407, 19, -72, 0.6541109530175627, 17, -88, 0.36772979736328126, 22, 114, 0.20143953111436633, 8, -11, 0.23848270159998675, 42, 43, 0.9836163552071294, 18, 105, 0.6398610990893469, -21, 55, 0.2280362504951433, 23, -102, 0.8518825410661921, 13, -16, 0.2947412317139797, 13, 122, 0.4727016761853535, 32, -5, 0.7799011847423318, 45, 15, 0.20393417358398438, 46, 105, 0.5973138726259754, 49, -2, 0.2571726820203993, 15, 100, 0.3935732693142361, -22, 17, 0.6416907263651361, 12, -61, 0.16953186667996978, 23, 121, 0.7315011774743387, 33, 44, 0.29612721928833285, -6, 35, 0.7126127256437933, 39, -8, 0.3469225396050347, 59, 26, 0.19104083591037327, -33, -56, 0.1836720445421007, 2, 10, 0.677925326797074, 33, 35, 0.42354604085286457, 78, 20, 0.4990339068952465, 41, 64, 0.8135286290649738, 34, 9, 0.8421767474805123, 11, 43, 0.5360616084516182, -53, 72, 0.0415603549221335, 17, -61, 0.7493189102759202, 40, -4, 0.3837405056423611, 4, -72, 0.27008398488907337, -3, 30, 0.5863302881607456, -18, 175, 0.6855289083428601, 13, -59, 0.790382724088098, -20, 47, 0.2537066141764323, 42, 12, 0.24361512925889756, 27, 90, 0.42820766872829863, 15, 30, 0.3886899581664145, -17, -65, 0.3261087715188611, 28, 84, 0.332474981166318, 35, 14, 0.28294325086805555, 52, 5, 0.2321641370985243, 15, 145, 0.4178628190236676, 4, -56, 0.5374328190242157, 18, -63, 0.922756465741008, 12, -68, 0.8882778519356055, -10, 105, 0.09425150951201611, -5, 120, 0.39196884247423514, 65, -18, 0.7882125002444267, -15, 30, 0.4437771551017792, 14, -14, 0.9794503956366032, -6, 147, 0.32069646713751776, 17, -62, 0.9405250510296533, 11, -61, 0.1334473561889179, -20, 30, 0.5950650683736644, 51, 9, 0.23863206651475694, 56, 10, 0.3604748311310426, 48, 68, 0.26858154314319826, 52, 20, 0.20438849555121527, 47, 29, 0.2326368374294705, 15, 39, 0.5316813640049818, 41, 75, 0.6482782807499239, -6, 71, 0.6752662183709459, 40, 127, 0.30878597683376735, 31, 34, 0.4000638156467014, 7, 81, 0.38729682074652777, 57, 25, 0.8019829858147773, 5, -59, 0.4001051177058028, 16, -61, 0.6436422997902987, 15, -86, 0.3844016859266493, 22, 98, 0.05884143944742393, -54, 3, 0.09556154785130921, 27, 30, 0.9807481988420951, 13, -85, 0.9140182557591539, 1, 103, 0.28582678900824654, 44, 21, 0.3075203789605035, -22, 24, 0.8286482556887981, 54, -2, 0.1824055650499132, -90, 0, 0.16175982822306756, -1, 15, 0.45181584927245244, 39, 22, 0.26654715643988713, -23, -58, 0.7366342080173794, 4, -53, 0.5353886664395221]],
+                         ["april", [60, -95, 0.43647918701171873, 25, 17, 0.5403020736132939, 1, 7, 0.5546543988359267, 8, -66, 0.9100664924815896, 12, -15, 0.03455235999299466, 42, 19, 0.3687484063042535, 56, 24, 0.2641818406846788, 13, 105, 0.2755471656044074, -15, -5, 0.032250051844013305, 47, 8, 0.2767014906141493, 8, 38, 0.2871743435329861, 12, -69, 0.6376082963646839, -26, 31, 0.36924854839649, -34, -64, 0.5641516322402091, 6, 12, 0.08584886811910719, 13, -2, 0.2312511663266461, 40, 60, 0.6543277827806199, 8, -2, 0.29362507734567445, 25, 45, 0.8912771907670529, -2, 30, 0.05283474671199617, 8, 1, 0.011491567654158374, 36, 138, 0.35677503797743054, -14, -170, 0.6158924345559613, 16, -62, 0.44773348985728023, 19, 166, 0.37138905843098957, -12, 96, 0.5202707445921357, -24, -127, 0.18786844767205402, 15, -90, 0.3533283148871528, 44, 18, 0.29366685655381947, 29, 47, 0.5213417529104102, 60, 100, 0.30465158549641247, 31, 36, 0.40482048882378474, 18, -64, 0.38779127332899305, 15, -61, 0.3492975531684028, 6, -9, 0.03300171663262286, 3, 73, 0.2982727728949653, 6, 158, 0.8619765096189486, 18, -77, 0.9440512200752589, 21, 57, 0.6241323865539864, 14, -61, 0.3492975531684028, 41, 20, 0.45037653113055263, -1, 11, 0.2583428955849193, -19, -169, 0.4091206567061796, 43, 7, 0.36484585232204864, -13, -176, 0.9620619817197024, -41, 174, 0.07161209106445313, 18, -64, 0.38779127332899305, 49, -2, 0.33633507622612846, 42, 1, 0.32854861789279516, 15, 48, 0.31113839157047074, 72, -40, 0.015076283578640881, -13, -172, 0.9284212244006202, -29, 167, 0.9121593945115004, 24, 54, 0.4075948418511285, 8, -5, 0.9321589529247806, 20, 77, 0.9799122053826388, 40, 47, 0.2658436486662128, -29, 28, 0.5837425330123778, 13, -61, 0.3492975531684028, 1, 38, 0.2700437757703993, 22, 113, 0.15902845594618056, 13, 144, 0.3205219184027778, 39, 35, 0.8856971988938184, 33, 65, 0.0054010424597906725, 24, 90, 0.3615554470486111, 20, -12, 0.880017724044103, -8, 159, 0.5519390882418811, 21, -71, 0.5742916123811602, 13, -61, 0.3492975531684028, 43, 12, 0.29479783799913195, -15, -140, 0.7762830394546095, 46, 2, 0.2886861165364583, 41, 22, 0.22561852349175346, 35, 38, 0.9089076019682539, 32, -64, 0.30185700738467613, 48, 19, 0.20558103773328992, 10, 49, 0.5448962913671116, -10, -76, 0.8067385174909809, -16, 167, 0.8490080403574538, 0, 166, 0.6618451107659575, -4, 55, 0.6897731419361811, 62, 10, 0.466703893159239, -13, 34, 0.05113394293683027, -21, -159, 0.3557073833049641, 9, 2, 0.7160541287701782, 0, 25, 0.9300847902687391, 21, -80, 0.3709879896375868, 32, 53, 0.3689803398980035, -51, -59, 0.6146721904094633, -12, 45, 0.7445676909997949, 41, 12, 0.3122178141276042, 35, 105, 0.30765947129991317, 40, 45, 0.4818215393847023, -8, 125, 0.7868310530438737, 19, -70, 0.8152402812235378, 49, 32, 0.5198477488666113, 26, 50, 0.008188999395874141, -20, -175, 0.15278476506066452, 19, -80, 0.8895809569413204, 24, -13, 0.12077043158286538, 64, 26, 0.5266772793637702, 7, 21, 0.863646297948125, -21, 165, 0.5740345012977697, -20, 57, 0.6668545747281157, 39, 71, 0.9775269454999258, 47, 9, 0.28182310316297743, -27, 133, 0.9112760816154527, 17, -4, 0.9703995609476739, 62, 15, 0.31732242160373264, 43, 25, 0.27267842610677084, 38, -97, 0.22797806207168947, 46, 25, 0.3483800252278646, -12, 18, 0.7642480009285456, -43, 67, 0.758885065946462, 15, 19, 0.3837517225992103, -29, 24, 0.6378546700217487, -9, -172, 0.7638445467639081, 35, 33, 0.40024854871961807, -54, -37, 0.7203968255731521, 4, 114, 0.2833125983344184, 25, 51, 0.6514054669619407, 2, 112, 0.2794063498400785, 47, 13, 0.25456017388237845, -18, 35, 0.4375133250557949, 1, 32, 0.5020088693513856, 47, 20, 0.3043561469184028, 16, 8, 0.019714883107036174, 54, -4, 0.23092198689778645, -10, -55, 0.02441559877291455, 62, -7, 0.2974951648194738, 11, -10, 0.05639323469827151, 9, -80, 0.003675669383516933, 37, 127, 0.30630252414279513, 10, -84, 0.5178875704253313, 49, 6, 0.28397123548719616, 16, -24, 0.47668081905505766, 24, -76, 0.19007548325722834, 36, -5, 0.3610459730360243, 53, -8, 0.2724841139051649, 30, 70, 0.7248708092105051, 7, 134, 0.2868354627821181, 10, 8, 0.5091055562873995, -2, -77, 0.5170785025238778, 49, 15, 0.26152901543511287, 16, 106, 0.8482270288029675, 53, 28, 0.2867444525824653, 28, 3, 0.35897237684205474, 46, 15, 0.2570404730902778, 13, -88, 0.3556925116644965, -8, 178, 0.09705034280796832, 46, -56, 0.9428046822651164, 9, 168, 0.30394656711154516, -30, -71, 0.28350860334423333, 18, -66, 0.3702337985568576, 50, 4, 0.2278380839029948, 1, 173, 0.7651150720420645, 19, -72, 0.6383922693170387, 17, -88, 0.3329052734375, 22, 114, 0.20325454711914062, 8, -11, 0.7289077949237752, 42, 43, 0.02426075250025006, 18, 105, 0.93834424726555, -21, 55, 0.9350417428762275, 23, -102, 0.22613575585595802, 13, -16, 0.9191958588042527, 13, 122, 0.8759922565489314, 32, -5, 0.5340011654395176, 45, 15, 0.2570404730902778, 46, 105, 0.12381388121878611, 49, -2, 0.33633507622612846, 15, 100, 0.31450280083550347, -22, 17, 0.06858101522366722, 12, -61, 0.8187790395202511, 23, 121, 0.5789176995309437, 33, 44, 0.7864570493361911, -6, 35, 0.21551760314405521, 39, -8, 0.3783944363064236, 59, 26, 0.2880901421440972, -33, -56, 0.08856643676757812, 2, 10, 0.05478139197253651, 33, 35, 0.4148224555121528, 78, 20, 0.8063562839789884, 41, 64, 0.3648524201410811, 34, 9, 0.6480656328881437, 11, 43, 0.49962260444701134, -53, 72, 0.04081925127568031, 17, -61, 0.10978407357450892, 40, -4, 0.3636273193359375, 4, -72, 0.08001657006482377, -3, 30, 0.6418168159984212, -18, 175, 0.6380872185265801, 13, -59, 0.7358267192064513, -20, 47, 0.18258641560872396, 42, 12, 0.31269212510850697, 27, 90, 0.3671965874565972, 15, 30, 0.9873396530569485, -17, -65, 0.22688805550764057, 28, 84, 0.8188234399414832, 35, 14, 0.3239310709635417, 52, 5, 0.2540012444390191, 15, 145, 0.4228223500304892, 4, -56, 0.9834946660881196, 18, -63, 0.4959559973713372, 12, -68, 0.7372048628728401, -10, 105, 0.539687045799606, -5, 120, 0.956443459075176, 65, -18, 0.8888470954193541, -15, 30, 0.07382735709742816, 14, -14, 0.5027643458633662, -6, 147, 0.8295722111410841, 17, -62, 0.3729982339413207, 11, -61, 0.47467274928502234, -20, 30, 0.5459243991452394, 51, 9, 0.2850643242730035, 56, 10, 0.5321657594869245, 48, 68, 0.6457560436715368, 52, 20, 0.23144646538628472, 47, 29, 0.2780123392740885, 15, 39, 0.9168002543889356, 41, 75, 0.7723558774318903, -6, 71, 0.049003143023738205, 40, 127, 0.29896199544270835, 31, 34, 0.40883595784505206, 7, 81, 0.28368023342556425, 57, 25, 0.2734004575529395, 5, -59, 0.7760602884966806, 16, -61, 0.5344433699646064, 15, -86, 0.33771216498480905, 22, 98, 0.7565817145008548, -54, 3, 0.9056011390770309, 27, 30, 0.2942040355112481, 13, -85, 0.5258026157768124, 1, 103, 0.2548033311631944, 44, 21, 0.31778628879123266, -22, 24, 0.6717906182411644, 54, -2, 0.27429740058051216, -90, 0, 0.3994880256669041, -1, 15, 0.4324135577656004, 39, 22, 0.31058671739366317, -23, -58, 0.17419710461107552, 4, -53, 0.7800047303888645]],
+                         ["may", [60, -95, 0.4346647474500868, 25, 17, 0.1335591350830031, 1, 7, 0.30527869855512013, 8, -66, 0.47512350990350016, 12, -15, 0.007066386828338378, 42, 19, 0.4379385036892361, 56, 24, 0.3610365464952257, 13, 105, 0.41933466450352974, -15, -5, 0.24410763882640107, 47, 8, 0.3412158881293403, 8, 38, 0.27837899102105035, 12, -69, 0.6518814713533737, -26, 31, 0.5081549012462376, -34, -64, 0.883257218168461, 6, 12, 0.413391506795178, 13, -2, 0.8522420137118106, 40, 60, 0.5605662777049699, 8, -2, 0.9951213730705037, 25, 45, 0.1362049965205563, -2, 30, 0.9845621544939289, 8, 1, 0.06665654718900083, 36, 138, 0.3256604682074653, -14, -170, 0.9550273074582399, 16, -62, 0.8788901544660735, 19, 166, 0.3476419745551215, -12, 96, 0.48510075715708945, -24, -127, 0.19109880655747258, 15, -90, 0.2859873792860243, 44, 18, 0.33252505832248264, 29, 47, 0.15597163886382137, 60, 100, 0.8783431767325478, 31, 36, 0.4366484578450521, 18, -64, 0.3227633327907986, 15, -61, 0.31131334092881946, 6, -9, 0.1337026424724581, 3, 73, 0.2447617424858941, 6, 158, 0.4706179050591457, 18, -77, 0.7136517358418302, 21, 57, 0.3059905053281765, 14, -61, 0.31131334092881946, 41, 20, 0.07927698898587676, -1, 11, 0.9752971365524278, -19, -169, 0.7617692083646268, 43, 7, 0.3829485405815972, -13, -176, 0.6066209989120782, -41, 174, 0.050420951843261716, 18, -64, 0.3227633327907986, 49, -2, 0.38288499620225697, 42, 1, 0.34506951226128474, 15, 48, 0.20844935705431455, 72, -40, 0.41737339826611863, -13, -172, 0.5714683043894977, -29, 167, 0.10608255493415697, 24, 54, 0.43575005425347224, 8, -5, 0.6589043164171459, 20, 77, 0.19276055106122159, 40, 47, 0.07326422859756632, -29, 28, 0.31528085083331914, 13, -61, 0.31131334092881946, 1, 38, 0.23131568060980903, 22, 113, 0.26658494737413196, 13, 144, 0.2960624525282118, 39, 35, 0.24924349202365959, 33, 65, 0.9868771418090514, 24, 90, 0.31982730441623264, 20, -12, 0.08388452704950156, -8, 159, 0.07379345202913845, 21, -71, 0.2971508191305796, 13, -61, 0.31131334092881946, 43, 12, 0.3710242377387153, -15, -140, 0.4467741508371713, 46, 2, 0.3482647026909722, 41, 22, 0.26040352715386283, 35, 38, 0.08423138817460885, 32, -64, 0.48805876350626776, 48, 19, 0.23440511067708333, 10, 49, 0.08937203895528978, -10, -76, 0.5631381361577101, -16, 167, 0.544372138737369, 0, 166, 0.6814165755582541, -4, 55, 0.5068131497271237, 62, 10, 0.6463547092388501, -13, 34, 0.3124185895694588, -21, -159, 0.8612920647165437, 9, 2, 0.1755338895319234, 0, 25, 0.14724629673808087, 21, -80, 0.33203321668836805, 32, 53, 0.441693352593316, -51, -59, 0.40775588312120026, -12, 45, 0.6019181142205678, 41, 12, 0.37798272026909724, 35, 105, 0.3130354478624132, 40, 45, 0.5605200334945459, -8, 125, 0.6673668550776105, 19, -70, 0.24997359441482148, 49, 32, 0.6590888069119947, 26, 50, 0.2169502089423604, -20, -175, 0.5617157119974028, 19, -80, 0.005785283965962007, 24, -13, 0.11905135782055054, 64, 26, 0.4547507611280833, 7, 21, 0.8474371107257916, -21, 165, 0.7184998272644714, -20, 57, 0.4666164174201236, 39, 71, 0.29544811407081106, 47, 9, 0.31668958875868053, -27, 133, 0.21635998684772273, 17, -4, 0.28575770597152317, 62, 15, 0.38976759168836805, 43, 25, 0.312491455078125, 38, -97, 0.9353972162166831, 46, 25, 0.41030629475911456, -12, 18, 0.6449730124004283, -43, 67, 0.06474158416476061, 15, 19, 0.052142971202592925, -29, 24, 0.276639617316891, -9, -172, 0.5151198604450961, 35, 33, 0.42820404052734373, -54, -37, 0.4569015711602262, 4, 114, 0.24959879557291667, 25, 51, 0.846589839835466, 2, 112, 0.47729195299168947, 47, 13, 0.34325741238064233, -18, 35, 0.8344531970678463, 1, 32, 0.8781555464024514, 47, 20, 0.37778588189019097, 16, 8, 0.7840905853827309, 54, -4, 0.335264655219184, -10, -55, 0.5445853358088233, 62, -7, 0.48713218255588175, 11, -10, 0.783524096117671, 9, -80, 0.2630648125865579, 37, 127, 0.2906915283203125, 10, -84, 0.7072781817076399, 49, 6, 0.31159966362847225, 16, -24, 0.5167630859179924, 24, -76, 0.8361344355216975, 36, -5, 0.3706902058919271, 53, -8, 0.31631798638237846, 30, 70, 0.993722619349799, 7, 134, 0.2504008314344618, 10, 8, 0.8185778333769764, -2, -77, 0.11651633467440392, 49, 15, 0.295603264702691, 16, 106, 0.1202906493242264, 53, 28, 0.3469012451171875, 28, 3, 0.6505808715975926, 46, 15, 0.29346394856770835, 13, -88, 0.2857801310221354, -8, 178, 0.46235260732277195, 46, -56, 0.8576021551263268, 9, 168, 0.2602762858072917, -30, -71, 0.6668087717621285, 18, -66, 0.30992723253038196, 50, 4, 0.29470984564887154, 1, 173, 0.17855069971259574, 19, -72, 0.6854633250594253, 17, -88, 0.29936886257595485, 22, 114, 0.2113149176703559, 8, -11, 0.27176278703169254, 42, 43, 0.24655572752523858, 18, 105, 0.30125315317778245, -21, 55, 0.39263497577596507, 23, -102, 0.7274009658415104, 13, -16, 0.06589371699055968, 13, 122, 0.3630194575344634, 32, -5, 0.49692602326549695, 45, 15, 0.29346394856770835, 46, 105, 0.2561789678793559, 49, -2, 0.38288499620225697, 15, 100, 0.2713252258300781, -22, 17, 0.9975296618664361, 12, -61, 0.009000528745546799, 23, 121, 0.34346984893172006, 33, 44, 0.1075046044285014, -6, 35, 0.9195876615933024, 39, -8, 0.37877376980251737, 59, 26, 0.4102211168077257, -33, -56, 0.05579811520046658, 2, 10, 0.060542560794138556, 33, 35, 0.45751549614800346, 78, 20, 0.9664593169106309, 41, 64, 0.34519803651768055, 34, 9, 0.6816103804307436, 11, 43, 0.7572866353051362, -53, 72, 0.8833184144015919, 17, -61, 0.3332196686032709, 40, -4, 0.414754638671875, 4, -72, 0.22727072699903972, -3, 30, 0.2938771750772583, -18, 175, 0.568564828421818, 13, -59, 0.5040802269559721, -20, 47, 0.1344431389702691, 42, 12, 0.379794921875, 27, 90, 0.3391418117947049, 15, 30, 0.18795586922496088, -17, -65, 0.7902338751519016, 28, 84, 0.13586483756707135, 35, 14, 0.3764325968424479, 52, 5, 0.3385665215386285, 15, 145, 0.243236219101708, 4, -56, 0.12711722255562752, 18, -63, 0.17838054096788392, 12, -68, 0.42517199377298365, -10, 105, 0.1389445094078834, -5, 120, 0.26441140237750804, 65, -18, 0.8211430057837709, -15, 30, 0.9000299310232963, 14, -14, 0.10839910656271512, -6, 147, 0.173562596875235, 17, -62, 0.17960751060588231, 11, -61, 0.535510533527442, -20, 30, 0.3779657922978026, 51, 9, 0.332755126953125, 56, 10, 0.7536732742483184, 48, 68, 0.9832362598084845, 52, 20, 0.33844828287760415, 47, 29, 0.3331008572048611, 15, 39, 0.31646682778727253, 41, 75, 0.60416323687784, -6, 71, 0.44177443818520845, 40, 127, 0.3191804673936632, 31, 34, 0.430024176703559, 7, 81, 0.23205624050564236, 57, 25, 0.029194238350494284, 5, -59, 0.44394138067373456, 16, -61, 0.5649867023119783, 15, -86, 0.2981478881835937, 22, 98, 0.2269740449247155, -54, 3, 0.44716525113002403, 27, 30, 0.3117878218682131, 13, -85, 0.4399250281951904, 1, 103, 0.2268447028266059, 44, 21, 0.38325110541449653, -22, 24, 0.41813582174616715, 54, -2, 0.33132080078125, -90, 0, 0.3621683361128105, -1, 15, 0.30495531868122305, 39, 22, 0.3794363064236111, -23, -58, 0.25444500223349253, 4, -53, 0.056800177635369375]],
+                         ["june", [60, -95, 0.40826568603515623, 25, 17, 0.35010016229294794, 1, 7, 0.0387245656134948, 8, -66, 0.555244173058469, 12, -15, 0.5718854630588287, 42, 19, 0.44632965087890625, 56, 24, 0.35904395209418405, 13, 105, 0.4492427066511493, -15, -5, 0.08547740757817579, 47, 8, 0.34804341634114583, 8, 38, 0.23640653822157118, 12, -69, 0.8660765359539165, -26, 31, 0.7282097913839362, -34, -64, 0.29839747019365537, 6, 12, 0.615886193601463, 13, -2, 0.11292669604777561, 40, 60, 0.29859783251643346, 8, -2, 0.7578656193642624, 25, 45, 0.40938215286857604, -2, 30, 0.17546144251013973, 8, 1, 0.7204518219933583, 36, 138, 0.2868740505642361, -14, -170, 0.815787970826379, 16, -62, 0.7592653244381623, 19, 166, 0.3146953328450521, -12, 96, 0.7471154359568905, -24, -127, 0.40502609026766223, 15, -90, 0.20640421549479165, 44, 18, 0.35645572238498263, 29, 47, 0.47611884200493026, 60, 100, 0.1535491915325038, 31, 36, 0.4474658881293403, 18, -64, 0.30466668023003474, 15, -61, 0.2746376376681858, 6, -9, 0.8703583848803425, 3, 73, 0.21427252875434027, 6, 158, 0.8465399656972374, 18, -77, 0.6438009342701898, 21, 57, 0.2583326425177882, 14, -61, 0.2746376376681858, 41, 20, 0.5231639822830901, -1, 11, 0.9213834710244686, -19, -169, 0.7096888405440591, 43, 7, 0.39561286078559027, -13, -176, 0.953578906770879, -41, 174, 0.0406088383992513, 18, -64, 0.30466668023003474, 49, -2, 0.37809872097439234, 42, 1, 0.3476771714952257, 15, 48, 0.18228912612649928, 72, -40, 0.31713379369214467, -13, -172, 0.10060664240394468, -29, 167, 0.03808482095730714, 24, 54, 0.40188195122612846, 8, -5, 0.0888900405548676, 20, 77, 0.14974252257327736, 40, 47, 0.6139648403106791, -29, 28, 0.9555962566440993, 13, -61, 0.2746376376681858, 1, 38, 0.18850187513563368, 22, 113, 0.24995954725477432, 13, 144, 0.26806438869900173, 39, 35, 0.3075532508501121, 33, 65, 0.32866851620813375, 24, 90, 0.263252919514974, 20, -12, 0.11089842030735375, -8, 159, 0.6571286564528838, 21, -71, 0.884478042943641, 13, -61, 0.2746376376681858, 43, 12, 0.375667724609375, -15, -140, 0.5683641397199535, 46, 2, 0.3195375230577257, 41, 22, 0.3215582614474826, 35, 38, 0.33787253172886034, 32, -64, 0.3245724452229424, 48, 19, 0.24570270114474826, 10, 49, 0.4426642560967555, -10, -76, 0.5018039534889938, -16, 167, 0.2867199223225184, 0, 166, 0.6890990576164046, -4, 55, 0.9976923019794995, 62, 10, 0.8085745788943387, -13, 34, 0.16373269736100804, -21, -159, 0.03345211041819374, 9, 2, 0.48253550800584655, 0, 25, 0.1823567884153816, 21, -80, 0.3042559136284722, 32, 53, 0.4507574123806424, -51, -59, 0.7777784705581319, -12, 45, 0.643827053661458, 41, 12, 0.38652540418836806, 35, 105, 0.2974254353841146, 40, 45, 0.6598269972384788, -8, 125, 0.8266825265421386, 19, -70, 0.06741569994252761, 49, 32, 0.2605770586076147, 26, 50, 0.08171748076415009, -20, -175, 0.9719317815892147, 19, -80, 0.6471968086796631, 24, -13, 0.5294446682637975, 64, 26, 0.898359125162371, 7, 21, 0.4120394083175931, -21, 165, 0.7950159936983178, -20, 57, 0.9642207745703549, 39, 71, 0.6810469586774763, 47, 9, 0.3166580539279514, -27, 133, 0.36019980974261256, 17, -4, 0.06614624237843891, 62, 15, 0.3751013522677951, 43, 25, 0.3420445760091146, 38, -97, 0.1556561921186146, 46, 25, 0.398283454047309, -12, 18, 0.8845250948637984, -43, 67, 0.6826782165159798, 15, 19, 0.9499724754949727, -29, 24, 0.9304467927703816, -9, -172, 0.79705079688289, 35, 33, 0.44690877278645835, -54, -37, 0.7927604808496469, 4, 114, 0.2240955776638455, 25, 51, 0.08352718675812787, 2, 112, 0.5778356878623814, 47, 13, 0.28874287923177083, -18, 35, 0.36586854122214785, 1, 32, 0.8331291385190704, 47, 20, 0.38814849853515626, 16, 8, 0.8922939103121369, 54, -4, 0.2901038275824653, -10, -55, 0.8279810908747007, 62, -7, 0.977796553326199, 11, -10, 0.7241504120110078, 9, -80, 0.5487957822993793, 37, 127, 0.2754644436306424, 10, -84, 0.029267436791752477, 49, 6, 0.2855487060546875, 16, -24, 0.9142513160669091, 24, -76, 0.4252417406738951, 36, -5, 0.39201985677083334, 53, -8, 0.27793643527560763, 30, 70, 0.40153073890702196, 7, 134, 0.20776485866970487, 10, 8, 0.8273085131925906, -2, -77, 0.6189165915566592, 49, 15, 0.3076466539171007, 16, 106, 0.055693926725840726, 53, 28, 0.3387700398763021, 28, 3, 0.7067369597539349, 46, 15, 0.30347764756944445, 13, -88, 0.23889224582248264, -8, 178, 0.7297117924419392, 46, -56, 0.16302698816286965, 9, 168, 0.23444944593641492, -30, -71, 0.45936732174537587, 18, -66, 0.3060358683268229, 50, 4, 0.2708739725748698, 1, 173, 0.627862427253843, 19, -72, 0.9825554266222158, 17, -88, 0.2648582797580295, 22, 114, 0.2044957309299045, 8, -11, 0.5938910362512936, 42, 43, 0.4408415523506414, 18, 105, 0.7427724991524918, -21, 55, 0.355784022579955, 23, -102, 0.4060873185043823, 13, -16, 0.41180524031273025, 13, 122, 0.05410469953415875, 32, -5, 0.9139862780845213, 45, 15, 0.30347764756944445, 46, 105, 0.5022320777380892, 49, -2, 0.37809872097439234, 15, 100, 0.2512597147623698, -22, 17, 0.4692995918574594, 12, -61, 0.6339101342305434, 23, 121, 0.7856885155718211, 33, 44, 0.9010882349017679, -6, 35, 0.9031338452345323, 39, -8, 0.40277787950303817, 59, 26, 0.4023809136284722, -33, -56, 0.04726932525634766, 2, 10, 0.47462644221621375, 33, 35, 0.4608347913953993, 78, 20, 0.9571176576478307, 41, 64, 0.33662108379946354, 34, 9, 0.8060358723687556, 11, 43, 0.4044742873449244, -53, 72, 0.44503393484854936, 17, -61, 0.894241108094588, 40, -4, 0.42946712917751734, 4, -72, 0.3096783631205917, -3, 30, 0.4129981313413774, -18, 175, 0.9191390701825825, 13, -59, 0.8370874283727195, -20, 47, 0.1056730482313368, 42, 12, 0.3889556884765625, 27, 90, 0.28364539252387155, 15, 30, 0.7553471367567773, -17, -65, 0.38657905998586783, 28, 84, 0.8814705748498022, 35, 14, 0.3785292222764757, 52, 5, 0.3195710923936632, 15, 145, 0.04121656325145662, 4, -56, 0.27049746485921544, 18, -63, 0.8362243940119437, 12, -68, 0.49950932355076993, -10, 105, 0.7049074721287515, -5, 120, 0.2969079454348603, 65, -18, 0.10525276694052732, -15, 30, 0.8864895915483748, 14, -14, 0.58791048956049, -6, 147, 0.33868033718540114, 17, -62, 0.4266041468261844, 11, -61, 0.894076081297424, -20, 30, 0.26679421176942497, 51, 9, 0.2930105929904514, 56, 10, 0.8041336625618212, 48, 68, 0.39050855469318646, 52, 20, 0.310820075141059, 47, 29, 0.3916162448459201, 15, 39, 0.2326651340906155, 41, 75, 0.08073008502489065, -6, 71, 0.31127875133805194, 40, 127, 0.3182416449652778, 31, 34, 0.42967627631293404, 7, 81, 0.18383487277560764, 57, 25, 0.2816697980016528, 5, -59, 0.559199360974909, 16, -61, 0.3111683799453171, 15, -86, 0.24577123006184895, 22, 98, 0.9092469584167764, -54, 3, 0.10618584482985727, 27, 30, 0.07024168581897716, 13, -85, 0.505489719036786, 1, 103, 0.20098736233181425, 44, 21, 0.38605177137586805, -22, 24, 0.3860064070328063, 54, -2, 0.30055077446831596, -90, 0, 0.23360326731507908, -1, 15, 0.44122986712687196, 39, 22, 0.3879755995008681, -23, -58, 0.38245487907321896, 4, -53, 0.9487769048899309]],
+                         ["july", [60, -95, 0.42519829644097223, 25, 17, 0.08826171775682035, 1, 7, 0.09167654005479475, 8, -66, 0.28286650903201227, 12, -15, 0.9812238669128002, 42, 19, 0.4932394070095486, 56, 24, 0.35578101264105905, 13, 105, 0.14565195162537825, -15, -5, 0.40896734558095826, 47, 8, 0.38028506808810764, 8, 38, 0.23351414998372397, 12, -69, 0.6618205916817146, -26, 31, 0.14195358680666892, -34, -64, 0.17690653183595095, 6, 12, 0.5487198100586962, 13, -2, 0.35577836837432353, 40, 60, 0.09246317708984686, 8, -2, 0.16976229242555174, 25, 45, 0.28798478518943327, -2, 30, 0.2199384141012357, 8, 1, 0.007260958754941704, 36, 138, 0.3045835706922743, -14, -170, 0.6108437723621599, 16, -62, 0.8392524597607594, 19, 166, 0.3068116590711806, -12, 96, 0.47326162483706713, -24, -127, 0.9966204932378233, 15, -90, 0.24340674506293403, 44, 18, 0.38409827338324654, 29, 47, 0.2799114508043731, 60, 100, 0.8282453823620038, 31, 36, 0.4714285617404514, 18, -64, 0.31201070149739585, 15, -61, 0.302095947265625, 6, -9, 0.5974549879175342, 3, 73, 0.22669102986653647, 6, 158, 0.13322793289818657, 18, -77, 0.3153509815003569, 21, 57, 0.5785461086354062, 14, -61, 0.302095947265625, 41, 20, 0.9779505373093165, -1, 11, 0.4699263237989477, -19, -169, 0.932298321170081, 43, 7, 0.4456055704752604, -13, -176, 0.21564712797023022, -41, 174, 0.04926348368326823, 18, -64, 0.31201070149739585, 49, -2, 0.37991004096137154, 42, 1, 0.40454864501953125, 15, 48, 0.043843591575582486, 72, -40, 0.4731100864830621, -13, -172, 0.3721811994288242, -29, 167, 0.6254311796636285, 24, 54, 0.41203216552734373, 8, -5, 0.9306634161143286, 20, 77, 0.3600807306943349, 40, 47, 0.5924880010580035, -29, 28, 0.032091016575901965, 13, -61, 0.302095947265625, 1, 38, 0.20423534817165798, 22, 113, 0.3073223537868924, 13, 144, 0.25069976806640626, 39, 35, 0.5104769708557886, 33, 65, 0.10538952476772079, 24, 90, 0.2545612080891927, 20, -12, 0.7408934266057021, -8, 159, 0.5280826967581377, 21, -71, 0.27718390399639337, 13, -61, 0.302095947265625, 43, 12, 0.4086491902669271, -15, -140, 0.6042870394268686, 46, 2, 0.4100004408094618, 41, 22, 0.35163289388020835, 35, 38, 0.03897213163284252, 32, -64, 0.08188856196733307, 48, 19, 0.24289255777994792, 10, 49, 0.3108224092637757, -10, -76, 0.3025360546394741, -16, 167, 0.8150008627502738, 0, 166, 0.6990681551332074, -4, 55, 0.7655896786536447, 62, 10, 0.46874012458795444, -13, 34, 0.007810807609246129, -21, -159, 0.26585286427141963, 9, 2, 0.9147578710517081, 0, 25, 0.3697000111827061, 21, -80, 0.323157958984375, 32, 53, 0.46417816162109377, -51, -59, 0.06083373048544727, -12, 45, 0.15610443468045543, 41, 12, 0.41115610758463544, 35, 105, 0.30579111735026043, 40, 45, 0.3635979406454608, -8, 125, 0.8084852551768296, 19, -70, 0.8417937604754602, 49, 32, 0.23457520811417754, 26, 50, 0.45402532644916493, -20, -175, 0.7423694877668408, 19, -80, 0.027247917111437925, 24, -13, 0.7618919830170623, 64, 26, 0.7711156966683651, 7, 21, 0.26656463830421395, -21, 165, 0.12931528442542362, -20, 57, 0.4600733191886548, 39, 71, 0.0022446261981178273, 47, 9, 0.37514967176649305, -27, 133, 0.1555610198294881, 17, -4, 0.2269829887833501, 62, 15, 0.39726243760850694, 43, 25, 0.35494547526041664, 38, -97, 0.015619553414431886, 46, 25, 0.4210936143663194, -12, 18, 0.363171913718212, -43, 67, 0.237676507707263, 15, 19, 0.5982922141560587, -29, 24, 0.5408005846184837, -9, -172, 0.0037113426178436715, 35, 33, 0.46846432156032985, -54, -37, 0.9015022965656129, 4, 114, 0.2367438761393229, 25, 51, 0.814906441098348, 2, 112, 0.5779400171148082, 47, 13, 0.34392757839626736, -18, 35, 0.9551927459535487, 1, 32, 0.23345057980235817, 47, 20, 0.4168102349175347, 16, 8, 0.18535589475311065, 54, -4, 0.27943756103515627, -10, -55, 0.8225727227615238, 62, -7, 0.2254539410687223, 11, -10, 0.48023541763672273, 9, -80, 0.3323859594187716, 37, 127, 0.2147298855251736, 10, -84, 0.3632422263161216, 49, 6, 0.3441609361436632, 16, -24, 0.876301290553549, 24, -76, 0.22659328442102866, 36, -5, 0.40783189561631944, 53, -8, 0.28579684787326387, 30, 70, 0.25632088613657145, 7, 134, 0.22786020914713542, 10, 8, 0.9502988104750154, -2, -77, 0.7569108647996324, 49, 15, 0.329715576171875, 16, 106, 0.2709808776951048, 53, 28, 0.3481304931640625, 28, 3, 0.8103477663288721, 46, 15, 0.3647919040256076, 13, -88, 0.2787729899088542, -8, 178, 0.9572885436533809, 46, -56, 0.9267456557013325, 9, 168, 0.2435987345377604, -30, -71, 0.47060254798930534, 18, -66, 0.3239110989040799, 50, 4, 0.3177323744032118, 1, 173, 0.569552080920995, 19, -72, 0.8870948272417273, 17, -88, 0.2904279242621528, 22, 114, 0.27361924913194446, 8, -11, 0.555723021383776, 42, 43, 0.6469991516665686, 18, 105, 0.9871076058811625, -21, 55, 0.5858722372003721, 23, -102, 0.5009591344321424, 13, -16, 0.7196217768772855, 13, 122, 0.1238557858550624, 32, -5, 0.28816864448066404, 45, 15, 0.3647919040256076, 46, 105, 0.584632486062099, 49, -2, 0.37991004096137154, 15, 100, 0.2510475836859809, -22, 17, 0.9292735275842339, 12, -61, 0.22785149651889858, 23, 121, 0.7936017583619764, 33, 44, 0.44385896449839846, -6, 35, 0.17516730551124382, 39, -8, 0.43888465033637153, 59, 26, 0.40873094346788197, -33, -56, 0.05291067759195964, 2, 10, 0.8809211658977666, 33, 35, 0.48417748345269096, 78, 20, 0.9804990417884164, 41, 64, 0.67579935287955, 34, 9, 0.9825530070843125, 11, 43, 0.7516876531356682, -53, 72, 0.8770533439295706, 17, -61, 0.44601445623611236, 40, -4, 0.483305426703559, 4, -72, 0.41172988074584194, -3, 30, 0.5455512870176581, -18, 175, 0.1602367361528938, 13, -59, 0.9493788621918424, -20, 47, 0.117193603515625, 42, 12, 0.4133012898763021, 27, 90, 0.2785213385687934, 15, 30, 0.7415922771168004, -17, -65, 0.8039327792852211, 28, 84, 0.7498361671041774, 35, 14, 0.4139014689127604, 52, 5, 0.3425869411892361, 15, 145, 0.5122340116899898, 4, -56, 0.3835326758040677, 18, -63, 0.06707050140023418, 12, -68, 0.4007740731475128, -10, 105, 0.4338743187253289, -5, 120, 0.05023661343331942, 65, -18, 0.41050314863905446, -15, 30, 0.5051249954346575, 14, -14, 0.8802527920919004, -6, 147, 0.45866628092961326, 17, -62, 0.8851102119166296, 11, -61, 0.6012433509967042, -20, 30, 0.35372080429619934, 51, 9, 0.3686929999457465, 56, 10, 0.80090937449564, 48, 68, 0.7419414496203379, 52, 20, 0.30814788818359373, 47, 29, 0.39571004231770834, 15, 39, 0.914171577576734, 41, 75, 0.490971873730325, -6, 71, 0.17730194224485463, 40, 127, 0.29012820773654513, 31, 34, 0.4413326009114583, 7, 81, 0.19764373779296876, 57, 25, 0.049425663430531674, 5, -59, 0.5553076339672067, 16, -61, 0.25131235933767915, 15, -86, 0.2559976026746962, 22, 98, 0.07564001220498373, -54, 3, 0.6826386687083571, 27, 30, 0.8393841023769294, 13, -85, 0.15852011924361953, 1, 103, 0.21652565850151909, 44, 21, 0.42021921793619793, -22, 24, 0.5384290198076174, 54, -2, 0.3078130764431424, -90, 0, 0.5268700968789592, -1, 15, 0.5895499416223207, 39, 22, 0.46523868136935764, -23, -58, 0.3001660724940113, 4, -53, 0.039456328731236945]],
+                         ["august", [60, -95, 0.3428995090060764, 25, 17, 0.6574549396634033, 1, 7, 0.5356144012118306, 8, -66, 0.5270777254608522, 12, -15, 0.22054109043978765, 42, 19, 0.4958462185329861, 56, 24, 0.3403849283854167, 13, 105, 0.7434046521649336, -15, -5, 0.19951964223069352, 47, 8, 0.3337751261393229, 8, 38, 0.2763315667046441, 12, -69, 0.7550618551091995, -26, 31, 0.4615846811940233, -34, -64, 0.21629560492761257, 6, 12, 0.769513431740249, 13, -2, 0.8465373541349809, 40, 60, 0.99390516396779, 8, -2, 0.3727734532859539, 25, 45, 0.9018495454238983, -2, 30, 0.1830461755321635, 8, 1, 0.090403026793902, 36, 138, 0.3593616400824653, -14, -170, 0.680396862398943, 16, -62, 0.5307336796532326, 19, 166, 0.3445308091905382, -12, 96, 0.43710066626948585, -24, -127, 0.9824461684553705, 15, -90, 0.2600734117296007, 44, 18, 0.3581763373480903, 29, 47, 0.6191613492729985, 60, 100, 0.980812622593392, 31, 36, 0.4829068332248264, 18, -64, 0.3893748304578993, 15, -61, 0.3276204087999132, 6, -9, 0.3562596034266924, 3, 73, 0.2634452141655816, 6, 158, 0.776346266429863, 18, -77, 0.28176316222521935, 21, 57, 0.9882399623127398, 14, -61, 0.3276204087999132, 41, 20, 0.25782852276624346, -1, 11, 0.902093608696958, -19, -169, 0.7362344747191764, 43, 7, 0.43948862711588543, -13, -176, 0.08081493125694517, -41, 174, 0.058085912068684895, 18, -64, 0.3893748304578993, 49, -2, 0.3658155314127604, 42, 1, 0.3936827935112847, 15, 48, 0.6215615945565454, 72, -40, 0.41575421502270693, -13, -172, 0.7189538536776241, -29, 167, 0.9373163314280165, 24, 54, 0.44704254150390627, 8, -5, 0.28261786231377284, 20, 77, 0.9221106183233647, 40, 47, 0.7760709006773199, -29, 28, 0.8579567630549242, 13, -61, 0.3276204087999132, 1, 38, 0.25258578830295136, 22, 113, 0.29763997395833336, 13, 144, 0.2540887451171875, 39, 35, 0.044254764287734116, 33, 65, 0.45173482985363, 24, 90, 0.2886581759982639, 20, -12, 0.6725263726501932, -8, 159, 0.17518843757026892, 21, -71, 0.2634997409857972, 13, -61, 0.3276204087999132, 43, 12, 0.38125491672092016, -15, -140, 0.35765045137982454, 46, 2, 0.37874525282118054, 41, 22, 0.3688742404513889, 35, 38, 0.49591334233654505, 32, -64, 0.1567826704908789, 48, 19, 0.22647900051540798, 10, 49, 0.8551693590783148, -10, -76, 0.764447990534564, -16, 167, 0.38944827002509397, 0, 166, 0.8475899747013426, -4, 55, 0.6938930269666643, 62, 10, 0.318880575375297, -13, 34, 0.4512049647426144, -21, -159, 0.7125508817074884, 9, 2, 0.5521964240703704, 0, 25, 0.41882558790096114, 21, -80, 0.3492097642686632, 32, 53, 0.4737188720703125, -51, -59, 0.848961767144797, -12, 45, 0.04214854874026597, 41, 12, 0.37998633490668404, 35, 105, 0.31444491916232636, 40, 45, 0.5809882876701209, -8, 125, 0.04653850540596538, 19, -70, 0.4986579942720618, 49, 32, 0.7244269360817862, 26, 50, 0.9487037451267528, -20, -175, 0.42419849295538836, 19, -80, 0.7957064801017188, 24, -13, 0.22905233567169503, 64, 26, 0.9654518415909465, 7, 21, 0.885281420670087, -21, 165, 0.2475811308249667, -20, 57, 0.34126806911239294, 39, 71, 0.20619493217201834, 47, 9, 0.3274993557400174, -27, 133, 0.88956545435387, 17, -4, 0.776403230265968, 62, 15, 0.3124453396267361, 43, 25, 0.3953713650173611, 38, -97, 0.8060399946028604, 46, 25, 0.42973921034071183, -12, 18, 0.713658527229343, -43, 67, 0.5270276143984647, 15, 19, 0.782841654702273, -29, 24, 0.7218240852197501, -9, -172, 0.38742973708703177, 35, 33, 0.48326416015625, -54, -37, 0.9955901422471054, 4, 114, 0.2707289801703559, 25, 51, 0.07054624788900443, 2, 112, 0.7689870724515132, 47, 13, 0.31658871120876736, -18, 35, 0.8820929505676252, 1, 32, 0.8234328238495764, 47, 20, 0.4021014404296875, 16, 8, 0.7573959455103362, 54, -4, 0.26472686767578124, -10, -55, 0.42687081743345945, 62, -7, 0.4038576823077823, 11, -10, 0.9952576291982298, 9, -80, 0.9013436268802795, 37, 127, 0.22460883246527777, 10, -84, 0.1223209150729695, 49, 6, 0.3056973605685764, 16, -24, 0.19079481759412054, 24, -76, 0.4965091369759248, 36, -5, 0.4245741441514757, 53, -8, 0.2560766092936198, 30, 70, 0.09919046674749932, 7, 134, 0.26084681193033854, 10, 8, 0.8706710151175977, -2, -77, 0.6023709140913122, 49, 15, 0.3007398478190104, 16, 106, 0.1502291371513098, 53, 28, 0.2958758544921875, 28, 3, 0.963786413130118, 46, 15, 0.35258700900607637, 13, -88, 0.30278951009114585, -8, 178, 0.6125545117027129, 46, -56, 0.49947367906262397, 9, 168, 0.28149232652452255, -30, -71, 0.7609649785694073, 18, -66, 0.3562650892469618, 50, 4, 0.28967610677083333, 1, 173, 0.05413176458401103, 19, -72, 0.2713615589556094, 17, -88, 0.30605377197265626, 22, 114, 0.2650089348687066, 8, -11, 0.400004884622728, 42, 43, 0.38160371146424577, 18, 105, 0.6005232648138112, -21, 55, 0.1762787928820847, 23, -102, 0.16073946441127052, 13, -16, 0.6172021785406802, 13, 122, 0.6161830753002133, 32, -5, 0.5814065600593087, 45, 15, 0.35258700900607637, 46, 105, 0.27334855517816425, 49, -2, 0.3658155314127604, 15, 100, 0.24763982137044271, -22, 17, 0.9854921062451648, 12, -61, 0.7233525170545202, 23, 121, 0.38141639287325024, 33, 44, 0.7258080874057818, -6, 35, 0.10228408645913212, 39, -8, 0.44970109727647567, 59, 26, 0.3210335964626736, -33, -56, 0.07168342590332032, 2, 10, 0.0535869167219033, 33, 35, 0.4980544026692708, 78, 20, 0.14804941167430896, 41, 64, 0.8793234672801865, 34, 9, 0.44506183365563756, 11, 43, 0.9431997581225254, -53, 72, 0.850548761807954, 17, -61, 0.9219409312982392, 40, -4, 0.4815065171983507, 4, -72, 0.49942094016908223, -3, 30, 0.9916455690850127, -18, 175, 0.35256995778835565, 13, -59, 0.1327788792470077, -20, 47, 0.16441375732421876, 42, 12, 0.38095245361328123, 27, 90, 0.286260002983941, 15, 30, 0.7002885429165877, -17, -65, 0.8942617260864242, 28, 84, 0.27989725212514605, 35, 14, 0.3880849202473958, 52, 5, 0.30309238009982636, 15, 145, 0.9481048572596412, 4, -56, 0.04327211589935154, 18, -63, 0.12585525605904502, 12, -68, 0.4661047005989235, -10, 105, 0.11164333360568623, -5, 120, 0.3056941047468623, 65, -18, 0.44069123401043897, -15, 30, 0.31359843992676106, 14, -14, 0.700981530163499, -6, 147, 0.5611081421525853, 17, -62, 0.12337421731259746, 11, -61, 0.22377073467562592, -20, 30, 0.39091783141517455, 51, 9, 0.3393420749240451, 56, 10, 0.7822187969954344, 48, 68, 0.37318021805603807, 52, 20, 0.2859329901801215, 47, 29, 0.3778422715928819, 15, 39, 0.8968396288452478, 41, 75, 0.4339862204523922, -6, 71, 0.9306799705850921, 40, 127, 0.2730858018663194, 31, 34, 0.46001522488064234, 7, 81, 0.23127081976996527, 57, 25, 0.6272639613202259, 5, -59, 0.6708201067616427, 16, -61, 0.46098723091604765, 15, -86, 0.2966924370659722, 22, 98, 0.8284146875624526, -54, 3, 0.6166185892693719, 27, 30, 0.6392066604769193, 13, -85, 0.06883159332957434, 1, 103, 0.23577479044596353, 44, 21, 0.4125514390733507, -22, 24, 0.1621465709859813, 54, -2, 0.2868402099609375, -90, 0, 0.493214463983475, -1, 15, 0.7984539368593548, 39, 22, 0.4613760375976563, -23, -58, 0.03133717210895348, 4, -53, 0.07659267716072227]],
+                         ["september", [60, -95, 0.22212677001953124, 25, 17, 0.7514396216474815, 1, 7, 0.08125659178164457, 8, -66, 0.4819541763982831, 12, -15, 0.5409982205711243, 42, 19, 0.42672339545355903, 56, 24, 0.22177515665690103, 13, 105, 0.05171894011905098, -15, -5, 0.07461359834701875, 47, 8, 0.2554918416341146, 8, 38, 0.3113958740234375, 12, -69, 0.20496037952578217, -26, 31, 0.8099555675738678, -34, -64, 0.08302550711244383, 6, 12, 0.08516088688944345, 13, -2, 0.6070604405469616, 40, 60, 0.9342810247134501, 8, -2, 0.3507007128253312, 25, 45, 0.9267809521128625, -2, 30, 0.5700221705974345, 8, 1, 0.3532990418274894, 36, 138, 0.2743835957845052, -14, -170, 0.955801733166221, 16, -62, 0.4821531520135116, 19, 166, 0.35798485649956596, -12, 96, 0.12484744819539284, -24, -127, 0.4217834142123642, 15, -90, 0.26788187662760415, 44, 18, 0.3157904730902778, 29, 47, 0.6047173869333136, 60, 100, 0.1877249249259204, 31, 36, 0.4678668891059028, 18, -64, 0.38348375108506944, 15, -61, 0.3294074503580729, 6, -9, 0.7802151672837414, 3, 73, 0.29653795030381946, 6, 158, 0.5504246058044624, 18, -77, 0.22237807699906542, 21, 57, 0.42677180854425634, 14, -61, 0.3294074503580729, 41, 20, 0.39614889049760873, -1, 11, 0.20313457408666347, -19, -169, 0.7034420961071187, 43, 7, 0.3657418484157986, -13, -176, 0.49304872229544383, -41, 174, 0.10706930372450087, 18, -64, 0.38348375108506944, 49, -2, 0.2800311957465278, 42, 1, 0.33996256510416667, 15, 48, 0.7137925026543211, 72, -40, 0.3661331496554454, -13, -172, 0.6416771606021083, -29, 167, 0.49451662477926317, 24, 54, 0.460244140625, 8, -5, 0.4173411395534554, 20, 77, 0.11431300918308673, 40, 47, 0.26976965797412333, -29, 28, 0.0684162440961622, 13, -61, 0.3294074503580729, 1, 38, 0.32034783257378474, 22, 113, 0.33264756944444446, 13, 144, 0.2741412862141927, 39, 35, 0.5852353170681796, 33, 65, 0.830161264601292, 24, 90, 0.31499674479166667, 20, -12, 0.7185213748240065, -8, 159, 0.5612751079181937, 21, -71, 0.5112504075957351, 13, -61, 0.3294074503580729, 43, 12, 0.2854683770073785, -15, -140, 0.8191404346017614, 46, 2, 0.2972520955403646, 41, 22, 0.2785684373643663, 35, 38, 0.47042103164022586, 32, -64, 0.8371562741028563, 48, 19, 0.19293392605251736, 10, 49, 0.08715099059907627, -10, -76, 0.5670147289982348, -16, 167, 0.8660160765113667, 0, 166, 0.640305735768336, -4, 55, 0.06314215421862546, 62, 10, 0.5119138152241582, -13, 34, 0.8351315540541812, -21, -159, 0.017647609258002683, 9, 2, 0.058767606662004424, 0, 25, 0.15828954962420205, 21, -80, 0.3473530748155382, 32, 53, 0.4761430189344618, -51, -59, 0.4411177324291331, -12, 45, 0.14465810536044388, 41, 12, 0.30176055908203125, 35, 105, 0.2434777153862847, 40, 45, 0.2618129714661229, -8, 125, 0.35238718366987765, 19, -70, 0.7693031711397386, 49, 32, 0.6259057735391097, 26, 50, 0.30202426940507643, -20, -175, 0.6833730292764205, 19, -80, 0.8557892716756614, 24, -13, 0.2456697514992875, 64, 26, 0.7874890643107705, 7, 21, 0.14152675351017974, -21, 165, 0.05929008689874948, -20, 57, 0.4398825648627087, 39, 71, 0.10344847130837209, 47, 9, 0.25868062337239583, -27, 133, 0.39644644525358663, 17, -4, 0.01144353304468737, 62, 15, 0.20681498209635416, 43, 25, 0.33068216959635416, 38, -97, 0.4282080396473109, 46, 25, 0.3441135999891493, -12, 18, 0.34673442562681445, -43, 67, 0.9856674961619711, 15, 19, 0.12784451531929253, -29, 24, 0.9774326046285037, -9, -172, 0.3340081793340889, 35, 33, 0.46319010416666667, -54, -37, 0.6590514457324611, 4, 114, 0.28496219211154517, 25, 51, 0.0063980975306006105, 2, 112, 0.1867799851101266, 47, 13, 0.24517303466796875, -18, 35, 0.13199452156843405, 1, 32, 0.12895176155507249, 47, 20, 0.2966297403971354, 16, 8, 0.563943528263605, 54, -4, 0.21132588704427083, -10, -55, 0.37388398187699323, 62, -7, 0.7508980500557402, 11, -10, 0.229135846136871, 9, -80, 0.32589695279876507, 37, 127, 0.23178380330403645, 10, -84, 0.03572581370837913, 49, 6, 0.21508846706814236, 16, -24, 0.5326159573432978, 24, -76, 0.41407588835512465, 36, -5, 0.39400919596354167, 53, -8, 0.18775482177734376, 30, 70, 0.26165064448638276, 7, 134, 0.278511725531684, 10, 8, 0.17445553937266656, -2, -77, 0.1704840357062284, 49, 15, 0.20492023044162327, 16, 106, 0.9402559975834872, 53, 28, 0.1778719923231337, 28, 3, 0.0782884372401208, 46, 15, 0.24172451443142362, 13, -88, 0.2971481662326389, -8, 178, 0.4837228955501077, 46, -56, 0.08528305209563636, 9, 168, 0.3087501695421007, -30, -71, 0.6809081969049144, 18, -66, 0.34834791395399306, 50, 4, 0.2049590555826823, 1, 173, 0.8633567980392868, 19, -72, 0.2988319783377642, 17, -88, 0.314437493218316, 22, 114, 0.26207411024305555, 8, -11, 0.8580898719784431, 42, 43, 0.534816088528723, 18, 105, 0.8106771650775436, -21, 55, 0.43852849288196427, 23, -102, 0.5589818064559002, 13, -16, 0.9948290592591243, 13, 122, 0.9006645276417748, 32, -5, 0.06731252663924103, 45, 15, 0.24172451443142362, 46, 105, 0.6918167138466195, 49, -2, 0.2800311957465278, 15, 100, 0.27882992214626734, -22, 17, 0.13619557039714925, 12, -61, 0.596828373142464, 23, 121, 0.942225049381456, 33, 44, 0.08177951607528344, -6, 35, 0.6032414271082794, 39, -8, 0.3715784369574653, 59, 26, 0.19924977620442708, -33, -56, 0.13013546413845486, 2, 10, 0.20901993812097164, 33, 35, 0.4785930718315972, 78, 20, 0.9195017644303388, 41, 64, 0.3839238841699987, 34, 9, 0.904600476532272, 11, 43, 0.16737018427080286, -53, 72, 0.5304936881008784, 17, -61, 0.5081549583334559, 40, -4, 0.4047647433810764, 4, -72, 0.9326243038497554, -3, 30, 0.27576407562582816, -18, 175, 0.6518084853880552, 13, -59, 0.8306859425467206, -20, 47, 0.23967893812391494, 42, 12, 0.30126017252604165, 27, 90, 0.2931434122721354, 15, 30, 0.22188711271979045, -17, -65, 0.8046179116811988, 28, 84, 0.018962912805110532, 35, 14, 0.3258207533094618, 52, 5, 0.22068450927734376, 15, 145, 0.6318018773987554, 4, -56, 0.7779424235320038, 18, -63, 0.6334662156185231, 12, -68, 0.5173156650244951, -10, 105, 0.34504692504217216, -5, 120, 0.8943350763597384, 65, -18, 0.2970849283139708, -15, 30, 0.8265460583005609, 14, -14, 0.1780628156748466, -6, 147, 0.649284420064172, 17, -62, 0.47791363902919115, 11, -61, 0.28098897993719174, -20, 30, 0.840660574768264, 51, 9, 0.24824773152669272, 56, 10, 0.35718114137949375, 48, 68, 0.4433021389292755, 52, 20, 0.1925549825032552, 47, 29, 0.3099090576171875, 15, 39, 0.8383714385081779, 41, 75, 0.8530452713374833, -6, 71, 0.5524623347253832, 40, 127, 0.24586100260416666, 31, 34, 0.4331961398654514, 7, 81, 0.2608848402235243, 57, 25, 0.35366894580612407, 5, -59, 0.6620838448695877, 16, -61, 0.7907610350178996, 15, -86, 0.3212380642361111, 22, 98, 0.38499418917959805, -54, 3, 0.5154285618989711, 27, 30, 0.7387131915392344, 13, -85, 0.5613701268117478, 1, 103, 0.25293992784288194, 44, 21, 0.32770100911458333, -22, 24, 0.30218394223834966, 54, -2, 0.2224675835503472, -90, 0, 0.5916886748280539, -1, 15, 0.40813487401925075, 39, 22, 0.37820587158203123, -23, -58, 0.997355360486096, 4, -53, 0.059229649562215325]],
+                         ["october", [60, -95, 0.13532681783040365, 25, 17, 0.9022483362279747, 1, 7, 0.9412509025628107, 8, -66, 0.46918962793333907, 12, -15, 0.13910608643916988, 42, 19, 0.3301212226019965, 56, 24, 0.13049009535047743, 13, 105, 0.29458936050614615, -15, -5, 0.980469054838796, 47, 8, 0.1597665744357639, 8, 38, 0.3810210164388021, 12, -69, 0.06647292192485166, -26, 31, 0.16922730002799502, -34, -64, 0.23835394695961654, 6, 12, 0.5992087377480293, 13, -2, 0.09008078638776107, 40, 60, 0.44001717171007093, 8, -2, 0.5617211637247255, 25, 45, 0.16175970675659257, -2, 30, 0.05007471913727746, 8, 1, 0.8518766723354393, 36, 138, 0.30396965874565973, -14, -170, 0.8648039191116531, 16, -62, 0.46159744770794253, 19, 166, 0.3922091335720486, -12, 96, 0.8225356781414018, -24, -127, 0.5153839131816809, 15, -90, 0.3207930840386285, 44, 18, 0.21479515923394096, 29, 47, 0.3202821375140792, 60, 100, 0.7856740791818189, 31, 36, 0.41943369547526044, 18, -64, 0.41330281575520833, 15, -61, 0.37177992078993055, 6, -9, 0.6385839786452934, 3, 73, 0.37044074164496527, 6, 158, 0.2420051483694643, 18, -77, 0.3498059753310494, 21, 57, 0.24664473294728395, 14, -61, 0.37177992078993055, 41, 20, 0.3871794290968509, -1, 11, 0.8420517509282897, -19, -169, 0.7926701863069785, 43, 7, 0.2557217237684462, -13, -176, 0.5435138406537431, -41, 174, 0.20095474243164063, 18, -64, 0.41330281575520833, 49, -2, 0.1689327663845486, 42, 1, 0.30500539143880206, 15, 48, 0.2999149548274933, 72, -40, 0.6000213967216806, -13, -172, 0.7804529513961527, -29, 167, 0.30811225132142994, 24, 54, 0.4808705308702257, 8, -5, 0.20784268943531858, 20, 77, 0.3573077658686137, 40, 47, 0.8036284932405516, -29, 28, 0.9119181329226523, 13, -61, 0.37177992078993055, 1, 38, 0.37284918891059027, 22, 113, 0.35609215630425345, 13, 144, 0.31345069037543405, 39, 35, 0.012001986016897948, 33, 65, 0.45823119566070525, 24, 90, 0.381485595703125, 20, -12, 0.146942593270595, -8, 159, 0.798617076190363, 21, -71, 0.6479327938984757, 13, -61, 0.37177992078993055, 43, 12, 0.19840345594618056, -15, -140, 0.42380938061454965, 46, 2, 0.222886471218533, 41, 22, 0.18488788180881077, 35, 38, 0.8632908153976743, 32, -64, 0.8450191500599904, 48, 19, 0.1542816162109375, 10, 49, 0.7500662118335059, -10, -76, 0.4538517114504472, -16, 167, 0.23401077405854098, 0, 166, 0.6852476351953856, -4, 55, 0.18347804020760494, 62, 10, 0.4286713114354256, -13, 34, 0.028660244969439197, -21, -159, 0.7667085964591395, 9, 2, 0.7854806088344164, 0, 25, 0.6548604923135678, 21, -80, 0.359540778266059, 32, 53, 0.4002716064453125, -51, -59, 0.8293950866877231, -12, 45, 0.42691911267611693, 41, 12, 0.21895909627278645, 35, 105, 0.24395200941297743, 40, 45, 0.17983218675218005, -8, 125, 0.8054118358032499, 19, -70, 0.7628476043499052, 49, 32, 0.9424048212442414, 26, 50, 0.5009974944277511, -20, -175, 0.15589071822621736, 19, -80, 0.09947048726458796, 24, -13, 0.5475727945500682, 64, 26, 0.70953206674697, 7, 21, 0.36407423720470344, -21, 165, 0.11056688928845959, -20, 57, 0.0020642925504582577, 39, 71, 0.8020348668868983, 47, 9, 0.2276629638671875, -27, 133, 0.6645502629112738, 17, -4, 0.13478267980947656, 62, 15, 0.13910191853841145, 43, 25, 0.23273378160264757, 38, -97, 0.5806868418979055, 46, 25, 0.23203255547417534, -12, 18, 0.18032167398481103, -43, 67, 0.023450967016541924, 15, 19, 0.2352234346689891, -29, 24, 0.6103348486350891, -9, -172, 0.9333516543647562, 35, 33, 0.40133073594835067, -54, -37, 0.7131421051744492, 4, 114, 0.3254317898220486, 25, 51, 0.44647059240226705, 2, 112, 0.7174870851789266, 47, 13, 0.17850451999240452, -18, 35, 0.703706922075652, 1, 32, 0.397158121460356, 47, 20, 0.20613986545138888, 16, 8, 0.8543267787534797, 54, -4, 0.1405206044514974, -10, -55, 0.6611864521170735, 62, -7, 0.0011661247111945938, 11, -10, 0.8834983631711079, 9, -80, 0.5859789688087496, 37, 127, 0.23945490519205728, 10, -84, 0.4956755991976082, 49, 6, 0.1509133741590712, 16, -24, 0.4714556038139057, 24, -76, 0.8267612962348224, 36, -5, 0.3228755357530382, 53, -8, 0.1506241183810764, 30, 70, 0.6972551254778012, 7, 134, 0.34263003879123266, 10, 8, 0.07056395234063473, -2, -77, 0.20312982216349607, 49, 15, 0.13863764444986978, 16, 106, 0.049596384224719126, 53, 28, 0.12390252007378472, 28, 3, 0.8229222784169776, 46, 15, 0.21522381252712675, 13, -88, 0.3399648708767361, -8, 178, 0.9557131578971433, 46, -56, 0.5978822147065359, 9, 168, 0.3449984063042535, -30, -71, 0.28418944756554687, 18, -66, 0.3627511596679687, 50, 4, 0.15535198635525174, 1, 173, 0.326967753622857, 19, -72, 0.4872754202737093, 17, -88, 0.33114841037326387, 22, 114, 0.31894137912326387, 8, -11, 0.8660659551017197, 42, 43, 0.3097398993442181, 18, 105, 0.5428620480400358, -21, 55, 0.4527270494425898, 23, -102, 0.49920203722133993, 13, -16, 0.7959357874242069, 13, 122, 0.0872114846175388, 32, -5, 0.35853575581347996, 45, 15, 0.21522381252712675, 46, 105, 0.2384109223990386, 49, -2, 0.1689327663845486, 15, 100, 0.3037425062391493, -22, 17, 0.6388137819265546, 12, -61, 0.06428173899918443, 23, 121, 0.9530219843745944, 33, 44, 0.7394466219403861, -6, 35, 0.9603552272437954, 39, -8, 0.3142014906141493, 59, 26, 0.11138712565104167, -33, -56, 0.23393274943033854, 2, 10, 0.2445914535758964, 33, 35, 0.44124759250217016, 78, 20, 0.5901815989957732, 41, 64, 0.34996492412300384, 34, 9, 0.01924209460956472, 11, 43, 0.20703649908254962, -53, 72, 0.05946620039777584, 17, -61, 0.6253226473480882, 40, -4, 0.3498128255208333, 4, -72, 0.8558464922779527, -3, 30, 0.0398265521540232, -18, 175, 0.7592816652422766, 13, -59, 0.9196566330751224, -20, 47, 0.3337808905707465, 42, 12, 0.2178159925672743, 27, 90, 0.4216922336154514, 15, 30, 0.6717757637121539, -17, -65, 0.7412749798090159, 28, 84, 0.8515798667913969, 35, 14, 0.2594058057996962, 52, 5, 0.14559687296549478, 15, 145, 0.4771729822899925, 4, -56, 0.9628205508476964, 18, -63, 0.8823612793257802, 12, -68, 0.49427457970299404, -10, 105, 0.2975183566155848, -5, 120, 0.2638140293820549, 65, -18, 0.49697311501992913, -15, 30, 0.7732311126339182, 14, -14, 0.1085921320446056, -6, 147, 0.18088891040991162, 17, -62, 0.35518492981640526, 11, -61, 0.1568069983479332, -20, 30, 0.9979420157778521, 51, 9, 0.1842938232421875, 56, 10, 0.24832771186005875, 48, 68, 0.4882166453293263, 52, 20, 0.15439917670355902, 47, 29, 0.21644002278645832, 15, 39, 0.03983626170557486, 41, 75, 0.8109031806913356, -6, 71, 0.8809732778169531, 40, 127, 0.24900394015842015, 31, 34, 0.41813900417751737, 7, 81, 0.3117855156792535, 57, 25, 0.1268413763984273, 5, -59, 0.12938635490187989, 16, -61, 0.6978670809567696, 15, -86, 0.3500066799587674, 22, 98, 0.9110630233944537, -54, 3, 0.5216729765903182, 27, 30, 0.47474544107836025, 13, -85, 0.7517234468143663, 1, 103, 0.2857407633463542, 44, 21, 0.27731714884440106, -22, 24, 0.6973073422206453, 54, -2, 0.14408616807725694, -90, 0, 0.8859183265834347, -1, 15, 0.7476698568545586, 39, 22, 0.24318284776475693, -23, -58, 0.9771774743747342, 4, -53, 0.0329919520650509]],
+                         ["november", [60, -95, 0.09111437479654948, 25, 17, 0.794998577754504, 1, 7, 0.6555065064827438, 8, -66, 0.6263114541928715, 12, -15, 0.5550934305375715, 42, 19, 0.24297629462348092, 56, 24, 0.05952936808268229, 13, 105, 0.023377159928714475, -15, -5, 0.9512405828406548, 47, 8, 0.07101052178276909, 8, 38, 0.4451172892252604, 12, -69, 0.7647693407639327, -26, 31, 0.037754903421286734, -34, -64, 0.8996060501747518, 6, 12, 0.7758389094943249, 13, -2, 0.3978161269121885, 40, 60, 0.08858967178853994, 8, -2, 0.6701948390412806, 25, 45, 0.7977792436587868, -2, 30, 0.07996299461774758, 8, 1, 0.6604669906464715, 36, 138, 0.25996220906575523, -14, -170, 0.19321520259930014, 16, -62, 0.45385321239082976, 19, 166, 0.404123772515191, -12, 96, 0.24656879082166094, -24, -127, 0.19770564072029817, 15, -90, 0.372001953125, 44, 18, 0.14437099880642362, 29, 47, 0.4930537791847761, 60, 100, 0.9741112948537302, 31, 36, 0.3253859456380208, 18, -64, 0.3672304280598958, 15, -61, 0.3650020684136285, 6, -9, 0.8848821170363108, 3, 73, 0.39044253879123264, 6, 158, 0.0928665314766286, 18, -77, 0.03747124604547325, 21, 57, 0.6085413349329453, 14, -61, 0.3650020684136285, 41, 20, 0.3497930920186976, -1, 11, 0.3252206411452184, -19, -169, 0.9777905382552762, 43, 7, 0.19856592814127605, -13, -176, 0.5377790212861906, -41, 174, 0.29804965549045137, 18, -64, 0.3672304280598958, 49, -2, 0.10717134263780381, 42, 1, 0.2488012186686198, 15, 48, 0.78015616036465, 72, -40, 0.13297763332695944, -13, -172, 0.5589722633279697, -29, 167, 0.8585992747546588, 24, 54, 0.4284511311848958, 8, -5, 0.07418034065668166, 20, 77, 0.3230640121963029, 40, 47, 0.17017564577095812, -29, 28, 0.6389805815578149, 13, -61, 0.3650020684136285, 1, 38, 0.34910515679253473, 22, 113, 0.3046385362413194, 13, 144, 0.36307935926649304, 39, 35, 0.4179178872313942, 33, 65, 0.7663609071695527, 24, 90, 0.3797793240017361, 20, -12, 0.8668130198387026, -8, 159, 0.05730406278429134, 21, -71, 0.1150785231688718, 13, -61, 0.3650020684136285, 43, 12, 0.10137157864040798, -15, -140, 0.7354289248739525, 46, 2, 0.1465567355685764, 41, 22, 0.08975492689344618, 35, 38, 0.23370391440485117, 32, -64, 0.8697076915888577, 48, 19, 0.1174214596218533, 10, 49, 0.8532049995771418, -10, -76, 0.70518760756375, -16, 167, 0.2665133666642865, 0, 166, 0.6314776438170202, -4, 55, 0.07642992385460123, 62, 10, 0.5168748522137393, -13, 34, 0.9661078574056726, -21, -159, 0.20590040395244924, 9, 2, 0.9758108546004787, 0, 25, 0.017660985657509287, 21, -80, 0.3381248304578993, 32, 53, 0.32294165717230905, -51, -59, 0.8557897505794669, -12, 45, 0.032481792091947015, 41, 12, 0.12697269015842014, 35, 105, 0.2178740437825521, 40, 45, 0.12913139897188575, -8, 125, 0.2959983360167536, 19, -70, 0.7307060092135644, 49, 32, 0.7428287857049364, 26, 50, 0.7415361737921764, -20, -175, 0.32924734315382154, 19, -80, 0.5632504427871805, 24, -13, 0.33694760389905976, 64, 26, 0.14686837999942348, 7, 21, 0.18647351824730896, -21, 165, 0.35485227179595225, -20, 57, 0.06584410008484742, 39, 71, 0.2400063710288196, 47, 9, 0.15050730387369793, -27, 133, 0.46319070981518295, 17, -4, 0.7951842798259606, 62, 15, 0.03775918324788412, 43, 25, 0.16914508395724825, 38, -97, 0.8855874598834855, 46, 25, 0.15303799099392362, -12, 18, 0.1931865883521604, -43, 67, 0.6726765311362534, 15, 19, 0.3851365650552653, -29, 24, 0.3580119232281692, -9, -172, 0.5471959131976792, 35, 33, 0.31342420789930553, -54, -37, 0.32470332864797935, 4, 114, 0.32054938422309026, 25, 51, 0.4492321946957205, 2, 112, 0.6686832000472523, 47, 13, 0.09867288377549913, -18, 35, 0.39062068302476716, 1, 32, 0.486232447412968, 47, 20, 0.10804224650065104, 16, 8, 0.0700909798121292, 54, -4, 0.07738227844238281, -10, -55, 0.1898854466289438, 62, -7, 0.3328262831869859, 11, -10, 0.09756604496303145, 9, -80, 0.44218925792833474, 37, 127, 0.19361182318793402, 10, -84, 0.1032549013206363, 49, 6, 0.08226628621419271, 16, -24, 0.21994199608935527, 24, -76, 0.9217823154214838, 36, -5, 0.28658426920572916, 53, -8, 0.10461828443739149, 30, 70, 0.16585727916105486, 7, 134, 0.34910366482204863, 10, 8, 0.6682206290180054, -2, -77, 0.7013160360137414, 49, 15, 0.06604263305664063, 16, 106, 0.6843349149081543, 53, 28, 0.05413418240017361, 28, 3, 0.08185632779005014, 46, 15, 0.08372750176323784, 13, -88, 0.4200697496202257, -8, 178, 0.47247841960174464, 46, -56, 0.6474146363422772, 9, 168, 0.38615993923611114, -30, -71, 0.7694963670115134, 18, -66, 0.3536816067165799, 50, 4, 0.09303215026855469, 1, 173, 0.16425541808713828, 19, -72, 0.07934053717799949, 17, -88, 0.3219411892361111, 22, 114, 0.29098331027560764, 8, -11, 0.48769572121182636, 42, 43, 0.15189804257764195, 18, 105, 0.16709692963593992, -21, 55, 0.36262193554445676, 23, -102, 0.5465692072499804, 13, -16, 0.07201792774257076, 13, 122, 0.07662784966652236, 32, -5, 0.9444218847372965, 45, 15, 0.08372750176323784, 46, 105, 0.8323143058352537, 49, -2, 0.10717134263780381, 15, 100, 0.3658740912543403, -22, 17, 0.18525490708887615, 12, -61, 0.6472518394408407, 23, 121, 0.3832037492111544, 33, 44, 0.909540042532321, -6, 35, 0.18812667959803397, 39, -8, 0.20114583333333333, 59, 26, 0.029626267751057943, -33, -56, 0.33206899007161456, 2, 10, 0.37789516291431224, 33, 35, 0.32533277723524306, 78, 20, 0.9876039910653841, 41, 64, 0.44495524660620045, 34, 9, 0.15330756784063437, 11, 43, 0.39385069968632724, -53, 72, 0.29723273672699557, 17, -61, 0.5942551875847881, 40, -4, 0.24524932861328125, 4, -72, 0.6537017490519746, -3, 30, 0.591743020539881, -18, 175, 0.41604473919238305, 13, -59, 0.898775423221631, -20, 47, 0.3815754869249132, 42, 12, 0.1264360131157769, 27, 90, 0.4781123521592882, 15, 30, 0.5936432283489498, -17, -65, 0.4101696862640716, 28, 84, 0.685103663706441, 35, 14, 0.1830270724826389, 52, 5, 0.0896948750813802, 15, 145, 0.553482850050177, 4, -56, 0.40418461426771934, 18, -63, 0.16735441243493943, 12, -68, 0.7291776305746133, -10, 105, 0.8812367957591699, -5, 120, 0.9988802710696855, 65, -18, 0.7902578857824504, -15, 30, 0.6124210650007138, 14, -14, 0.7673601753352797, -6, 147, 0.6206462838328486, 17, -62, 0.9847548728107222, 11, -61, 0.9667274363024979, -20, 30, 0.6094284065105665, 51, 9, 0.06447710249159071, 56, 10, 0.44470442747359074, 48, 68, 0.7634015795529057, 52, 20, 0.07067175547281901, 47, 29, 0.13004104614257814, 15, 39, 0.3620383405794808, 41, 75, 0.7051643371504077, -6, 71, 0.6347212642680006, 40, 127, 0.21394146389431423, 31, 34, 0.3572208319769965, 7, 81, 0.32803978814019097, 57, 25, 0.0636886499442445, 5, -59, 0.9602202991563645, 16, -61, 0.6107126969332679, 15, -86, 0.3245492892795139, 22, 98, 0.25989959797046547, -54, 3, 0.7729412010771048, 27, 30, 0.14474720077336323, 13, -85, 0.07707129793759315, 1, 103, 0.27597095065646704, 44, 21, 0.17416302151150173, -22, 24, 0.4680302197954602, 54, -2, 0.08029312981499566, -90, 0, 0.8293413765212987, -1, 15, 0.06806908330950501, 39, 22, 0.17346664428710937, -23, -58, 0.7862579816347592, 4, -53, 0.9065303935621741]],
+                         ["december", [60, -95, 0.09218375311957465, 25, 17, 0.45523088850584814, 1, 7, 0.647806016732618, 8, -66, 0.30954826122612955, 12, -15, 0.11896110329665632, 42, 19, 0.22051834106445312, 56, 24, 0.02784207238091363, 13, 105, 0.6983190324263935, -15, -5, 0.3669465358853444, 47, 8, 0.05591977013481988, 8, 38, 0.48315816243489584, 12, -69, 0.892462596622637, -26, 31, 0.6413565043670849, -34, -64, 0.8933736596858036, 6, 12, 0.7495274729690296, 13, -2, 0.4935691240269666, 40, 60, 0.29125408077891557, 8, -2, 0.9201641779150572, 25, 45, 0.5057928421012449, -2, 30, 0.7810212617254801, 8, 1, 0.04827753527786394, 36, 138, 0.2793286980523004, -14, -170, 0.7828468466706544, 16, -62, 0.21114171271923232, 19, 166, 0.4213106282552083, -12, 96, 0.8468597750678517, -24, -127, 0.5147352027437089, 15, -90, 0.41297075059678817, 44, 18, 0.1346244133843316, 29, 47, 0.007440271937001142, 60, 100, 0.25195957821288195, 31, 36, 0.2527557373046875, 18, -64, 0.3375637478298611, 15, -61, 0.4048972913953993, 6, -9, 0.5643289720138611, 3, 73, 0.39744825575086806, 6, 158, 0.33783842901204086, 18, -77, 0.2816473397714806, 21, 57, 0.3543721556444852, 14, -61, 0.4048972913953993, 41, 20, 0.6870427061071603, -1, 11, 0.2463530305144076, -19, -169, 0.03499051809700371, 43, 7, 0.1810939704047309, -13, -176, 0.34450216847552373, -41, 174, 0.34624148898654517, 18, -64, 0.3375637478298611, 49, -2, 0.077244873046875, 42, 1, 0.2272751193576389, 15, 48, 0.9160362228759124, 72, -40, 0.2512003723810773, -13, -172, 0.38558175903429703, -29, 167, 0.15353261453644662, 24, 54, 0.40657619900173614, 8, -5, 0.2822245991165446, 20, 77, 0.4951433753974138, 40, 47, 0.6713604744369384, -29, 28, 0.049387200818627575, 13, -61, 0.4048972913953993, 1, 38, 0.41043514675564235, 22, 113, 0.29233757866753474, 13, 144, 0.29867316351996526, 39, 35, 0.39069666885550536, 33, 65, 0.6016079608737447, 24, 90, 0.40581305609809026, 20, -12, 0.05845564367540057, -8, 159, 0.5870030749464765, 21, -71, 0.03987768734091801, 13, -61, 0.4048972913953993, 43, 12, 0.07458606296115451, -15, -140, 0.009213332230271654, 46, 2, 0.1097351837158203, 41, 22, 0.07538453843858507, 35, 38, 0.9891894813659294, 32, -64, 0.6581245752158881, 48, 19, 0.09399458143446181, 10, 49, 0.3154537037796926, -10, -76, 0.5927244369567582, -16, 167, 0.043378099894741395, 0, 166, 0.25888725764537024, -4, 55, 0.9974954676724147, 62, 10, 0.3234467835345757, -13, 34, 0.7079420032851713, -21, -159, 0.050746155754185174, 9, 2, 0.22322817444246656, 0, 25, 0.37922351171226953, 21, -80, 0.34302466498480905, 32, 53, 0.3148558553059896, -51, -59, 0.9929338278375219, -12, 45, 0.5906743286399994, 41, 12, 0.09964118957519531, 35, 105, 0.23323299831814237, 40, 45, 0.2005994547611396, -8, 125, 0.4995193445501792, 19, -70, 0.5359018132763445, 49, 32, 0.12057735314295626, 26, 50, 0.5460828519985972, -20, -175, 0.887386494945172, 19, -80, 0.470211776839932, 24, -13, 0.28457226157416626, 64, 26, 0.2573576146248142, 7, 21, 0.10566276885714232, -21, 165, 0.09869297807472666, -20, 57, 0.19114837108577132, 39, 71, 0.6872005579507879, 47, 9, 0.13408180236816405, -27, 133, 0.6024214227877855, 17, -4, 0.8612455012745616, 62, 15, 0.012750652101304796, 43, 25, 0.1303031497531467, 38, -97, 0.21255344671635124, 46, 25, 0.1071302964952257, -12, 18, 0.5191022325010166, -43, 67, 0.2855201992076615, 15, 19, 0.10105971066308927, -29, 24, 0.4548094938919892, -9, -172, 0.6739888439253267, 35, 33, 0.27896687825520833, -54, -37, 0.568733351502695, 4, 114, 0.33883731418185764, 25, 51, 0.5962841734400977, 2, 112, 0.20597476141554572, 47, 13, 0.10358614603678386, -18, 35, 0.9566582857678149, 1, 32, 0.9651364174680086, 47, 20, 0.07850045098198785, 16, 8, 0.18534214683789896, 54, -4, 0.04681536356608073, -10, -55, 0.22441817705876765, 62, -7, 0.041839399200334526, 11, -10, 0.03944432755234706, 9, -80, 0.5617347501204777, 37, 127, 0.1660549079047309, 10, -84, 0.16143111048312664, 49, 6, 0.062007984585232205, 16, -24, 0.903071681677926, 24, -76, 0.5054822761314479, 36, -5, 0.2686713324652778, 53, -8, 0.05379823896620008, 30, 70, 0.9517286437680667, 7, 134, 0.34266771104600696, 10, 8, 0.8148452535275019, -2, -77, 0.6525973978148576, 49, 15, 0.05206718444824219, 16, 106, 0.3989664465848214, 53, 28, 0.03429350747002496, 28, 3, 0.7214177092677132, 46, 15, 0.05276481204562717, 13, -88, 0.4608003404405382, -8, 178, 0.7888561485810593, 46, -56, 0.25539414948468786, 9, 168, 0.40111070421006945, -30, -71, 0.6554107513759124, 18, -66, 0.40857957628038194, 50, 4, 0.043806724548339844, 1, 173, 0.9284465975090715, 19, -72, 0.555768971589686, 17, -88, 0.33031951904296875, 22, 114, 0.2775781080457899, 8, -11, 0.14087244441820002, 42, 43, 0.3393779249814125, 18, 105, 0.6917260020603436, -21, 55, 0.037219636761394614, 23, -102, 0.5492461850584365, 13, -16, 0.8913652462979827, 13, 122, 0.8023438838094273, 32, -5, 0.13649366033327437, 45, 15, 0.05276481204562717, 46, 105, 0.49504657690202714, 49, -2, 0.077244873046875, 15, 100, 0.3955119154188368, -22, 17, 0.19946771635540705, 12, -61, 0.3915799896626244, 23, 121, 0.34662516116531283, 33, 44, 0.29517705467086375, -6, 35, 0.03883605675021751, 39, -8, 0.19271626790364582, 59, 26, 0.010775707032945421, -33, -56, 0.3834724595811632, 2, 10, 0.13761875866864082, 33, 35, 0.2952728271484375, 78, 20, 0.34350288364086345, 41, 64, 0.4896907451390594, 34, 9, 0.38032503958672825, 11, 43, 0.9097211874441347, -53, 72, 0.3947740034185633, 17, -61, 0.3114378604570658, 40, -4, 0.21607574462890625, 4, -72, 0.7529558132914321, -3, 30, 0.21672638391826204, -18, 175, 0.4260100398250025, 13, -59, 0.2606609697648883, -20, 47, 0.3560627237955729, 42, 12, 0.09889789157443576, 27, 90, 0.4576192220052083, 15, 30, 0.8337610986225145, -17, -65, 0.42282521940452855, 28, 84, 0.08826076722964826, 35, 14, 0.1329685550265842, 52, 5, 0.05485986497667101, 15, 145, 0.7685505172980932, 4, -56, 0.9754421775367177, 18, -63, 0.361963442024717, 12, -68, 0.39322858900748237, -10, 105, 0.5127051257091793, -5, 120, 0.9748820803840963, 65, -18, 0.6912906042582524, -15, 30, 0.5096595931793286, 14, -14, 0.7560018442771996, -6, 147, 0.5668443690577261, 17, -62, 0.845356765364763, 11, -61, 0.034943602424460485, -20, 30, 0.4536693094001296, 51, 9, 0.05894318050808377, 56, 10, 0.7365187923442299, 48, 68, 0.5671376520834426, 52, 20, 0.059162589179144964, 47, 29, 0.07862659030490451, 15, 39, 0.19290756714533197, 41, 75, 0.47164194638620127, -6, 71, 0.8422055027415976, 40, 127, 0.18177807278103297, 31, 34, 0.33014957004123263, 7, 81, 0.33236718071831595, 57, 25, 0.5381031321363676, 5, -59, 0.8020282143723733, 16, -61, 0.17449508343006437, 15, -86, 0.3376275634765625, 22, 98, 0.5370778937604704, -54, 3, 0.2346237082982845, 27, 30, 0.6351603194583971, 13, -85, 0.8715490636608413, 1, 103, 0.2891877577039931, 44, 21, 0.10751160515679253, -22, 24, 0.27447726210777945, 54, -2, 0.04993678198920356, -90, 0, 0.9014424311165367, -1, 15, 0.5207494445995424, 39, 22, 0.1341358608669705, -23, -58, 0.4173400541476783, 4, -53, 0.13756605185768467]]];
+                  window.data = data;
+                  console.log(data);
+                  for (i=0;i<data.length;i++) {
+                    globe.addData(data[i][1], {format: 'magnitude', name: data[i][0], animated: true});
+                  }
+                  globe.createPoints();
+                  settime(globe,0)();
+                  globe.animate();
+                  document.body.style.backgroundImage = 'none'; // remove loading
+                };
+        </script>
+
+    </body>
+</html>

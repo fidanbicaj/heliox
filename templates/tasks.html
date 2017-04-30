@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+    {% load staticfiles %}
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="shortcut icon" href="{% static 'main/assets/images/favicon_1.ico' %}">
+
+        <title>Heliox</title>
+
+        <!--Morris Chart CSS -->
+
+        <link href="{% static 'main/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/core.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/components.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/pages.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/menu.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
+        <link href="{% static 'main/assets/css/style.css' %}" rel="stylesheet" type="text/css" />
+
+        <link href="{% static 'main/assets/plugins/radial/radial.css' %}" rel="stylesheet">
+
+        <link href="{% static 'main/assets/plugins/datatables/responsive.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/scroller.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/dataTables.colVis.css' %}" rel="stylesheet" type="text/css"/>
+        <link href="{% static 'main/assets/plugins/datatables/dataTables.bootstrap.min.css' %}" rel="stylesheet" type="text/css"/>
+
+        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        <script src="{% static 'main/assets/js/modernizr.min.js' %}"></script>
+    </head>
+
+
+    <body>
+
+      <header id="topnav">
+
+          <div class="navbar-custom">
+                <div class="container">
+                     <div class="topbar-main">
+                <div class="container">
+
+                    <!-- Logo container-->
+                    <div class="logo">
+                        <a href="{% url 'globe' %}"><img class="logo" style="width: 170px;" src="{% static 'main/assets/images/helioxlogo.png' %}"></a>
+                    </div>
+                    <!-- End Logo container-->
+
+
+                    <div class="menu-extras">
+                        <ul class="nav navbar-nav navbar-right pull-right">
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'index' %}">
+                                    <button class="btn btn-purple btn-custom">Dashboard</button>
+                                </form>
+                            </li>
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'tasks' %}">
+                                    <button class="btn btn-purple btn-custom">Tasks</button>
+                                </form>
+                            </li>
+                            <li class="navbar-c-items">
+                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'logout' %}">
+                                    <button type="submit" class="btn btn-danger btn-custom waves-effect waves-light">Log Out</button>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <div class="menu-item">
+                            <!-- Mobile menu toggle-->
+                            <a class="navbar-toggle">
+                                <div class="lines">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </a>
+                            <!-- End mobile menu toggle-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      </header>
+        <!-- End Navigation Bar-->
+      <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <h4 class="m-t-0 header-title"><b>Daily Tasks</b></h4>
+                                <button class="btn btn-primary btn-custom waves-effect waves-light" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"> Add new task</i></button>
+                            <div class="col-md-4 pull-right">
+                                    <div class="progress progress-lg m-b-5">
+                                        <div class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100" style="width: 69%;">
+                                            4.7 out of expected 6.8 kW planned
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title" id="myModalLabel">Add New Task</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                              <form role="form">
+                                                  <div class="form-group">
+                                                      <label for="exampleInputEmail1">Name</label>
+                                                      <input type="text" class="form-control"  placeholder="">
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label >Name of Task</label>
+                                                      <input type="text" class="form-control"  placeholder="Enter Name of Task">
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label >Time Taken</label>
+                                                      <input type="text" class="form-control"  placeholder="Enter Time">
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label >Status</label>
+                                                      <select class="form-control">
+                                                          <option>Active</option>
+
+                                                      </select>
+                                                  </div>
+
+                                                  <div class="form-group">
+                                                      <label >Start Time</label>
+                                                      <input type="text" class="form-control"  placeholder="Enter Time">
+                                                  </div>
+
+                                              </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <table id="datatable-buttons" class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th style="width: 250px;">Username</th>
+                                        <th>Task</th>
+                                        <th style="width: 70px;">Energy Consumption</th>
+                                        <th style="width: 70px;">Start</th>
+                                        <th style="width: 70px;">Status</th>
+                                        <th style="width: 5px;">Timelength</th>
+                                    </tr>
+                                    </thead>
+
+
+                                    <tbody>
+                                    <tr>
+                                        <td>Rexhep Berlajolli</td>
+                                        <td>Cook food for the group</td>
+                                        <td>0.5 kWh</td>
+                                        <td>12:30</td>
+                                        <td>Active</td>
+                                        <td>0.5 h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kolos Pukaj</td>
+                                        <td>Charge the laptop</td>
+                                        <td>0.7 kWh</td>
+                                        <td>15:00</td>
+                                        <td>Active</td>
+                                        <td>1.2 h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fidan Bicaj</td>
+                                        <td>Use laboratory equipment</td>
+                                        <td>1.2 kWh</td>
+                                        <td>18:00</td>
+                                        <td>Active</td>
+                                        <td>2 h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ermal Bujupaj</td>
+                                        <td>Filter the water</td>
+                                        <td>0.2 kWh</td>
+                                        <td>21:00</td>
+                                        <td>Active</td>
+                                        <td>0.5 h</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Agon Hysenaj</td>
+                                        <td>Take a shower</td>
+                                        <td>2.1 kWh</td>
+                                        <td>12:00</td>
+                                        <td>Active</td>
+                                        <td>1 h</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <script src="{% static 'main/assets/js/jquery.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/detect.js'%}"></script>
+        <script src="{% static 'main/assets/js/fastclick.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.slimscroll.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.blockUI.js' %}"></script>
+        <script src="{% static 'main/assets/js/waves.js' %}"></script>
+        <script src="{% static 'main/assets/js/wow.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.nicescroll.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.scrollTo.min.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.core.js' %}"></script>
+        <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
+
+        <script src="{% static 'main/assets/plugins/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.bootstrap.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.responsive.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/responsive.bootstrap.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/datatables/dataTables.scroller.min.js' %}"></script>
+
+    </body>
+</html>
