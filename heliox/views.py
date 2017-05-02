@@ -97,18 +97,6 @@ def settings(request):
     return HttpResponse("Settings")
 
 
-
-def json_response(request):
-    data = open('/home/riki/Downloads/more_data.json', 'r').read()
-    data = list(data)
-    return HttpResponse(json.dumps(data), content_type='application/json')
-
-
 @logged__in
 def tasks(request):
     return render(request, 'tasks.html', {})
-
-
-@logged__in
-def globe(request):
-    return render(request, 'globe.html', {})
