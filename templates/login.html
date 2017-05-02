@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--suppress ALL -->
 <html>
     {% load staticfiles %}
     <head>
@@ -51,12 +52,12 @@
                         <ul class="nav navbar-nav navbar-right pull-right">
                             <li class="navbar-c-items">
                                 <div class="navbar-left app-search pull-left hidden-xs">
-                                    <button class="btn btn-info btn-custom" onclick="login('login_modal');">Login</button>
+                                    <button class="btn btn-info btn-custom" onclick="show_modal('login_modal');">Login</button>
                                 </div>
                             </li>
                             <li class="navbar-c-items">
                                 <div class="navbar-left app-search pull-left hidden-xs">
-                                    <button class="btn btn-info btn-custom" onclick="login('register_modal');">Register</button>
+                                    <button class="btn btn-info btn-custom" onclick="show_modal('register_modal');">Register</button>
                                 </div>
                             </li>
                         </ul>
@@ -172,15 +173,10 @@
 
 
         <script type="text/javascript">
-            function login(which_modal) {
-                // Instantiate new modal
+            function show_modal(which_modal) {
                 Custombox.open({
                     target: '#'+which_modal,
                     effect: 'blur',
-                    overlayColor: '#36404a',
-                    speedIn: 700,
-                    speedOut: 700,
-                    delay: 0
                 });
             }
         </script>

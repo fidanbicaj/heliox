@@ -11,16 +11,3 @@ class Users(models.Model):
 
     def __unicode__(self):
         return self.username
-
-
-class Settings(models.Model):
-    username = models.CharField(max_length=50)
-    latitude = models.CharField(max_length=50)
-    longitude = models.CharField(max_length=50)
-    solar_panels = models.FloatField(null=True)
-    power_of_panels = models.FloatField(null=True)
-    losses = models.FloatField(null=True)
-    battery = models.FloatField(null=True)
-
-    def __unicode__(self):
-        return ("%s,%s" % (self.latitude, self.longitude))
