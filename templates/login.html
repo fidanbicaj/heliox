@@ -100,7 +100,8 @@
                             <h3 class="panel-title">Login</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form" action="{% url 'register' %}" method="post">
+                            <form role="form" action="{% url 'login' %}" method="post">
+                                <input hidden name="request_type" value="login">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="username" class="pull-left">Username</label>
@@ -130,6 +131,7 @@
                         </div>
                         <div class="panel-body">
                             <form role="form" action="{% url 'login' %}" method="post">
+                                <input hidden name="request_type" value="register">
                                 {% csrf_token %}
                                 <div class="form-group">
                                     <label for="username" class="pull-left">Username</label>
@@ -167,6 +169,9 @@
         <script src="{% static 'main/assets/js/jquery.scrollTo.min.js' %}"></script>
         <script src="{% static 'main/assets/js/jquery.core.js' %}"></script>
         <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
+
+        <script src="{% static 'main/assets/plugins/notifyjs/js/notify.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/notifications/notify-metro.js' %}"></script>
 
         <script src="{% static 'main/assets/plugins/custombox/js/custombox.min.js' %}"></script>
         <script src="{% static 'main/assets/plugins/custombox/js/legacy.min.js' %}"></script>
@@ -754,6 +759,17 @@
         ga('send', 'pageview');
 
     </script>
+
+
+    {% if messages %}
+            {% for message in messages %}
+                <script type="text/javascript">
+                    $(function () {
+                        $.Notification.notify('{{ message.tags }}','top center', '', '{{ message }}');
+                    });
+                </script>
+            {% endfor %}
+        {% endif %}
 
     </body>
 </html>
