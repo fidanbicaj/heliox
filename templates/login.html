@@ -181,7 +181,10 @@
             function show_modal(which_modal) {
                 Custombox.open({
                     target: '#'+which_modal,
-                    effect: 'blur',
+                    effect: 'superscaled',
+                    overlay: {
+                    	active: true
+                    }
                 });
             }
         </script>
