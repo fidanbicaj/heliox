@@ -22,7 +22,7 @@
         <link href="{% static 'main/assets/plugins/radial/radial.css' %}" rel="stylesheet">
 
         <link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.theme.default.min.css' %}" rel="stylesheet" type="text/css" />
+		<link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.theme.green.min.css' %}" rel="stylesheet" type="text/css" />
 
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,79 +94,47 @@
                             <span class="label label-primary">Electronic Devices</span>
                             <br>
                             <br>
-                            <div class="owl-carousel owl-theme" id="owl2">
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/1.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/2.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/3.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/4.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/5.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/6.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/7.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/8.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/9.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/10.jpg' %}" />
+                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                                <div class="panel-body p-0">
+                                    <div class="">
+                                        <div id="owl-slider" class="owl-carousel">
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Phone</h3>
+                                                <p class="small text-white">100 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Laptop</h3>
+                                                <p class="small text-white">250 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">iPod</h3>
+                                                <p class="small text-white">150 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                        </div><!-- /#tiles-slide-1 -->
+                                    </div><!-- /.panel-body -->
                                 </div>
                             </div>
                             <hr>
                             <span class="label label-primary">House Devices</span>
                             <br>
                             <br>
-                            <div class="owl-carousel owl-theme" id="owl2">
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/1.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/2.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/3.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/4.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/5.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/6.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/7.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/8.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/9.jpg' %}" />
-                                </div>
-                                <div class="item">
-                                    <img src="{% static 'main/assets/images/gallery/10.jpg' %}" />
-                                </div>
-                            </div>
                         </div>
                         <div class="col-md-10">
                             <div class="card-box table-responsive">
                                 <h4 class="m-t-0 header-title"><b>Daily Tasks</b></h4>
-                                    <button class="btn btn-primary btn-custom waves-effect waves-light"><i class="fa fa-plus"> Add new task</i></button>
+                                    <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">
+                                           <span class="btn-label"><i class="fa fa-plus"></i>
+                                           </span>Add new task</button>
+
                                     <div class="col-md-4 pull-right">
                                         <div class="progress progress-lg m-b-5">
                                             <span class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100" style="width: 69%;">
@@ -196,16 +164,24 @@
         <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
 
         <script src="{% static 'main/assets/plugins/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/owl.carousel/dist/jquery.mousewheel.js' %}"></script>
 
         <script type="text/javascript">
-            $('.owl-carousel').owlCarousel({
-                items: 1,
-                mouseDrag: true,
-                loop:true,
-                margin:1,
-                nav:true,
-                dots: false
-            });
+            var owl = $('.owl-carousel');
+                owl.owlCarousel({
+                    loop:true,
+                    nav:false,
+                    items: 1,
+                    autoplay: true
+                });
+                owl.on('mousewheel', '.owl-stage', function (e) {
+                    if (e.deltaY>0) {
+                        owl.trigger('next.owl');
+                    } else {
+                        owl.trigger('prev.owl');
+                    }
+                    e.preventDefault();
+                });
         </script>
 
     </body>
