@@ -1,306 +1,219 @@
-<!DOCTYPE html>
-<html>
-    {% load staticfiles %}
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% extends 'navbar.html' %}
+{% load staticfiles %}
+{% block content %}
 
-        <link rel="shortcut icon" href="{% static 'main/assets/images/favicon_1.ico' %}">
-
-        <title>Heliox</title>
-
-        <!--Morris Chart CSS -->
-
-        <link href="{% static 'main/assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/core.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/components.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/icons.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/pages.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/menu.css' %}" rel="stylesheet" type="text/css" />
-        <link href="{% static 'main/assets/css/responsive.css' %}" rel="stylesheet" type="text/css" />
-
-        <link href="{% static 'main/assets/plugins/radial/radial.css' %}" rel="stylesheet">
-
-        <link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" />
-		<link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.theme.green.min.css' %}" rel="stylesheet" type="text/css" />
-
-        <link href="{% static 'main/assets/plugins/custombox/css/custombox.css' %}" rel="stylesheet">
-
-        <link href="{% static 'main/assets/plugins/sweetalert/sweetalert.css' %}" rel="stylesheet" type="text/css" />
-
-        <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-        <![endif]-->
-
-        <script src="{% static 'main/assets/plugins/sweetalert/sweetalert.min.js' %}"></script>
-        <script src="{% static 'main/assets/js/modernizr.min.js' %}"></script>
-    </head>
-
-
-    <body>
-
-      <header id="topnav">
-
-          <div class="navbar-custom">
-                <div class="container">
-                     <div class="topbar-main">
-
-                    <!-- Logo container-->
-                    <div class="logo">
-                        <a href="{% url 'index' %}"><img class="logo" style="width: 170px;" src="{% static 'main/assets/images/helioxlogo.png' %}"></a>
-                    </div>
-                    <!-- End Logo container-->
-
-
-                    <div class="menu-extras">
-                        <ul class="nav navbar-nav navbar-right pull-right">
-                            <li class="navbar-c-items">
-                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'index' %}">
-                                    <button class="btn btn-purple btn-custom">Dashboard</button>
-                                </form>
-                            </li>
-                            <li class="navbar-c-items">
-                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'tasks' %}">
-                                    <button class="btn btn-purple btn-custom">Tasks</button>
-                                </form>
-                            </li>
-                            <li class="navbar-c-items">
-                                <form role="form" class="navbar-left app-search pull-left hidden-xs" action="{% url 'logout' %}">
-                                    <button type="submit" class="btn btn-danger btn-custom waves-effect waves-light">Log Out</button>
-                                </form>
-                            </li>
-                        </ul>
-
-                        <div class="menu-item">
-                            <!-- Mobile menu toggle-->
-                            <a class="navbar-toggle">
-                                <div class="lines">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-2 card-box text-center">
+                <h4 class="m-t-0 header-title"><b>Devices List</b></h4>
+            <button type="button" class="btn btn-purple btn-rounded" onclick="show_modal('device_modal')"><span class="btn-label"><i class="fa fa-plus"></i></span>Add new device</button>
+                <hr>
+                <span class="label label-primary">Personal Devices</span>
+                <br>
+                <br>
+                <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                    <div class="panel-body p-0">
+                        <div class="">
+                            <div id="personal_carousel" class="owl-carousel">
+                                {% for item in personal_devices %}
+                                <div class="item">
+                                    <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                    <p class="small text-white">{{ item.power }} watt</p>
+                                    <br>
+                                    <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                    <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
                                 </div>
-                            </a>
-                            <!-- End mobile menu toggle-->
-                        </div>
+                                {% endfor %}
+                            </div><!-- /#tiles-slide-1 -->
+                        </div><!-- /.panel-body -->
+                    </div>
+                </div>
+                <hr>
+                <span class="label label-primary">Electronic Devices</span>
+                <br>
+                <br>
+                <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                    <div class="panel-body p-0">
+                        <div class="">
+                            <div id="electronic_carousel" class="owl-carousel">
+                                {% for item in electronic_devices %}
+                                <div class="item">
+                                    <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                    <p class="small text-white">{{ item.power }} watt</p>
+                                    <br>
+                                    <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                    <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                </div>
+                                {% endfor %}
+                            </div><!-- /#tiles-slide-1 -->
+                        </div><!-- /.panel-body -->
+                    </div>
+                </div>
+                <hr>
+                <span class="label label-primary">Electronic Devices</span>
+                <br>
+                <br>
+                <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                    <div class="panel-body p-0">
+                        <div class="">
+                            <div id="house_carousel" class="owl-carousel">
+                                {% for item in house_appliances %}
+                                <div class="item">
+                                    <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                    <p class="small text-white">{{ item.power }} watt</p>
+                                    <br>
+                                    <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                    <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                </div>
+                                {% endfor %}
+                            </div><!-- /#tiles-slide-1 -->
+                        </div><!-- /.panel-body -->
                     </div>
                 </div>
             </div>
-          </div>
-      </header>
-        <!-- End Navigation Bar-->
-      <div class="wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-2 card-box text-center">
-                            <h4 class="m-t-0 header-title"><b>Devices List</b></h4>
-                            <button class="btn btn-purple btn-rounded" onclick="show_modal('device_modal')">Add a new Device</button>
-                            <hr>
-                            <span class="label label-primary">Personal Devices</span>
-                            <br>
-                            <br>
-                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
-                                <div class="panel-body p-0">
-                                    <div class="">
-                                        <div id="personal_carousel" class="owl-carousel">
-                                            {% for item in personal_devices %}
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
-                                                <p class="small text-white">{{ item.power }} watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            {% endfor %}
-                                        </div><!-- /#tiles-slide-1 -->
-                                    </div><!-- /.panel-body -->
-                                </div>
+            <div class="col-md-10">
+                <div class="card-box table-responsive">
+                    <h4 class="m-t-0 header-title"><b>Tasks</b></h4>
+                    <ul class="list-inline">
+                        <li>
+                            <button type="button" class="btn btn-purple btn-rounded waves-effect waves-light"><span class="btn-label"><i class="fa fa-plus"></i></span>Add new task</button>
+                        </li>
+                        <li class="list-group-item b-0"><span class="fa fa-circle text-success m-r-10"></span>In progress tasks</li>
+                        <li class="list-group-item b-0"><span class="fa fa-circle text-info m-r-10"></span>Up coming tasks</li>
+                        <li class="col-md-4 pull-right">
+                            <div class="progress progress-lg m-b-5">
+                                <span class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100" style="width: 69%;">
+                                    4.7 out of expected 6.8 kW planned
+                                </span>
                             </div>
-                            <hr>
-                            <span class="label label-primary">Electronic Devices</span>
-                            <br>
-                            <br>
-                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
-                                <div class="panel-body p-0">
-                                    <div class="">
-                                        <div id="electronic_carousel" class="owl-carousel">
-                                            {% for item in electronic_devices %}
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
-                                                <p class="small text-white">{{ item.power }} watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            {% endfor %}
-                                        </div><!-- /#tiles-slide-1 -->
-                                    </div><!-- /.panel-body -->
-                                </div>
-                            </div>
-                            <hr>
-                            <span class="label label-primary">Electronic Devices</span>
-                            <br>
-                            <br>
-                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
-                                <div class="panel-body p-0">
-                                    <div class="">
-                                        <div id="house_carousel" class="owl-carousel">
-                                            {% for item in house_appliances %}
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
-                                                <p class="small text-white">{{ item.power }} watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            {% endfor %}
-                                        </div><!-- /#tiles-slide-1 -->
-                                    </div><!-- /.panel-body -->
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-10">
-                            <div class="card-box table-responsive">
-                                <h4 class="m-t-0 header-title"><b>Daily Tasks</b></h4>
-                                    <button type="button" class="btn btn-purple btn-rounded waves-effect waves-light">
-                                           <span class="btn-label"><i class="fa fa-plus"></i>
-                                           </span>Add new task</button>
+                        </li>
+                    </ul>
+                    <hr>
+                    <div class="col-lg-5">
+                        <div class="card-box">
+                            <h4 class="text-dark header-title m-t-0">Today Tasks</h4>
+                            <p class="text-muted font-13">
+                                Your awesome text goes here.
+                            </p>
 
-                                    <div class="col-md-4 pull-right">
-                                        <div class="progress progress-lg m-b-5">
-                                            <span class="progress-bar progress-bar-default" role="progressbar" aria-valuenow="69" aria-valuemin="0" aria-valuemax="100" style="width: 69%;">
-                                                4.7 out of expected 6.8 kW planned
-                                            </span>
+                            <div class="nicescroll p-20" style="height: 545px;">
+                                <div class="timeline-2">
+                                    <div class="time-item">
+                                        <div class="item-info">
+                                            <div class="text-muted"><small>17:50 ( 10 minutes )</small></div>
+                                            <p><strong class="text-info">Kolos Pukaj</strong> Uploaded a photo <strong>"DSC000586.jpg"</strong></p>
+                                            <p><strong class="bold">Maqin trrojes</strong> </p>
+                                            <div class="text-muted"><small>17 kWh</small></div>
                                         </div>
                                     </div>
-                                    <hr>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-      <div id="device_modal" class="modal-demo">
-            <div class="modal-dialog">
-                <div class="modal-content p-0 b-0">
-                    <div class="panel panel-color panel-purple">
-                        <div class="panel-heading">
-                            <button type="button" class="close" onclick="Custombox.close();">
-                                <span>&times;</span><span class="sr-only">Close</span>
-                            </button>
-                            <h3 class="panel-title">Open Ticket</h3>
-                        </div>
-                        <div class="panel-body">
-                            <div class="form-group no-margin">
-                                <label class="control-label pull-left">Device Name</label>
-                                <input class="form-control" id='device_name' name='device_name' placeholder="Device Name" value="" required/>
-                                <br>
-                                <label class="control-label pull-left">Device Power ( watt )</label>
-                                <input class="form-control" type="number" id='device_power' name='device_power' placeholder="Device Power" value="" required/>
-                                <br>
-                                <label class="control-label pull-left">Device Category</label>
-                                <br>
-                                <hr>
-                                <div class="form-group">
-                                    <div class="radio radio-danger radio-inline pull-left">
-                                        <input type="radio" id="personal" value="personal" name="device_category" checked>
-                                        <label for="personal">Personal</label>
-                                    </div>
-                                    <div class="radio radio-danger radio-inline pull-left">
-                                        <input type="radio" id="electronic" value="electronic" name="device_category">
-                                        <label for="electronic">Electronic</label>
-                                    </div>
-                                    <div class="radio radio-danger radio-inline pull-left">
-                                        <input type="radio" id="house" value="house" name="device_category">
-                                        <label for="house">House Appliances</label>
-                                    </div>
-                                    <button class="btn btn-danger pull-right" id="submit_device">Add it</button>
+  <div id="device_modal" class="modal-demo">
+        <div class="modal-dialog">
+            <div class="modal-content p-0 b-0">
+                <div class="panel panel-color panel-purple">
+                    <div class="panel-heading">
+                        <button type="button" class="close" onclick="Custombox.close();">
+                            <span>&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h3 class="panel-title">Open Ticket</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group no-margin">
+                            <label class="control-label pull-left">Device Name</label>
+                            <input class="form-control" id='device_name' name='device_name' placeholder="Device Name" value="" required/>
+                            <br>
+                            <label class="control-label pull-left">Device Power ( watt )</label>
+                            <input class="form-control" type="number" id='device_power' name='device_power' placeholder="Device Power" value="" required/>
+                            <br>
+                            <label class="control-label pull-left">Device Category</label>
+                            <br>
+                            <hr>
+                            <div class="form-group">
+                                <div class="radio radio-danger radio-inline pull-left">
+                                    <input type="radio" id="personal" value="personal" name="device_category" checked>
+                                    <label for="personal">Personal</label>
                                 </div>
+                                <div class="radio radio-danger radio-inline pull-left">
+                                    <input type="radio" id="electronic" value="electronic" name="device_category">
+                                    <label for="electronic">Electronic</label>
+                                </div>
+                                <div class="radio radio-danger radio-inline pull-left">
+                                    <input type="radio" id="house" value="house" name="device_category">
+                                    <label for="house">House Appliances</label>
+                                </div>
+                                <button class="btn btn-danger pull-right" id="submit_device">Add it</button>
                             </div>
                         </div>
                     </div>
-                </div><!-- /.modal-content -->
-            </div>
+                </div>
+            </div><!-- /.modal-content -->
         </div>
+    </div>
+    {% endblock %}
 
-        <script src="{% static 'main/assets/js/jquery.min.js' %}"></script>
-        <script src="{% static 'main/assets/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'main/assets/js/detect.js'%}"></script>
-        <script src="{% static 'main/assets/js/fastclick.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.slimscroll.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.blockUI.js' %}"></script>
-        <script src="{% static 'main/assets/js/waves.js' %}"></script>
-        <script src="{% static 'main/assets/js/wow.min.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.nicescroll.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.scrollTo.min.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.core.js' %}"></script>
-        <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
-
-        <script src="{% static 'main/assets/plugins/owl.carousel/dist/owl.carousel.min.js' %}"></script>
-
-        <script src="{% static 'main/assets/plugins/custombox/js/custombox.min.js' %}"></script>
-        <script src="{% static 'main/assets/plugins/custombox/js/legacy.min.js' %}"></script>
-
-        <script type="text/javascript">
-            function show_modal(which_modal) {
-                $('#device_name').val("");
-                Custombox.open({
-                    target: '#'+which_modal,
-                    effect: 'blur',
-                    overlay: {
-                    	active: true
-                    }
-                });
-            }
-        </script>
-
-        <script type="text/javascript">
-            var owl = $('.owl-carousel');
-                owl.owlCarousel({
-                    loop:true,
-                    nav:false,
-                    items: 1,
-                    autoplay: true
-                });
-        </script>
-
-
-        <script type="text/javascript">
-            $('#submit_device').click(function () {
-                var device_name = $('#device_name').val();
-                var device_power = $('#device_power').val();
-                var device_category = $('input[name=device_category]:checked').val();
-                $.ajax({
-                    type: 'POST',
-                    url : '{% url 'add_devices' %}',
-                    dataType: 'json',
-                    data: {
-                        device_name: device_name,
-                        device_power: device_power,
-                        device_category: device_category,
-                        csrfmiddlewaretoken: "{{ csrf_token }}"
-                    },
-                    success: function (json_response) {
-                        Custombox.close();
-                        swal({
-                              title: json_response['Title'],
-                              text: json_response['Message'],
-                              type: json_response['Type'],
-                              confirmButtonText: "Okay ",
-                              confirmButtonColor: "#34d3eb"
-                          });
-                        if (json_response['Type'] === 'success'){
-                            $('#'+device_category+'_carousel').trigger('add.owl.carousel',
-                                ['<div class"item"><h3 class="text-primary font-600">'+device_name+'</h3><p class="small text-white">'+device_power+' watt</p><br><button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button> <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button></div>']).trigger('refresh.owl.carousel');
-                        }
-                    }
-                })
+    {% block myscripts %}
+    <script type="text/javascript">
+        function show_modal(which_modal) {
+            $('#device_name').val("");
+            Custombox.open({
+                target: '#'+which_modal,
+                effect: 'blur',
+                overlay: {
+                    active: true
+                }
             });
-        </script>
+        }
+    </script>
 
-    </body>
-</html>
+    <script type="text/javascript">
+        var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                loop:true,
+                nav:false,
+                items: 1,
+                autoplay: true
+            });
+    </script>
+
+
+    <script type="text/javascript">
+        $('#submit_device').click(function () {
+            var device_name = $('#device_name').val();
+            var device_power = $('#device_power').val();
+            var device_category = $('input[name=device_category]:checked').val();
+            $.ajax({
+                type: 'POST',
+                url : '{% url 'add_devices' %}',
+                dataType: 'json',
+                data: {
+                    device_name: device_name,
+                    device_power: device_power,
+                    device_category: device_category,
+                    csrfmiddlewaretoken: "{{ csrf_token }}"
+                },
+                success: function (json_response) {
+                    Custombox.close();
+                    swal({
+                          title: json_response['Title'],
+                          text: json_response['Message'],
+                          type: json_response['Type'],
+                          confirmButtonText: "Okay ",
+                          confirmButtonColor: "#34d3eb"
+                      });
+                    if (json_response['Type'] === 'success'){
+                        $('#'+device_category+'_carousel').trigger('add.owl.carousel',
+                            ['<div class"item"><h3 class="text-primary font-600">'+device_name+'</h3><p class="small text-white">'+device_power+' watt</p><br><button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button> <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button></div>']).trigger('refresh.owl.carousel');
+                    }
+                }
+            })
+        });
+    </script>
+    {% endblock myscripts %}
