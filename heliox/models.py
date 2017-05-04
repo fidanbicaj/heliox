@@ -31,12 +31,11 @@ class Devices(models.Model):
 
 
 class Tasks(models.Model):
-    title = models.CharField(max_length=150)
     device = models.ForeignKey(Devices)
     start_time = models.DateTimeField(default=datetime.now)
     duration = models.FloatField(default=15)
     energy = models.FloatField(default=0.5)
 
     def __unicode__(self):
-        return self.title
+        return self.device
 
