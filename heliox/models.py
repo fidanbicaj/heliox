@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -9,6 +10,7 @@ device_categories = (
     ('e', 'Electronic'),
     ('h', 'House')
 )
+
 
 class Users(models.Model):
     username = models.CharField(max_length=50)
@@ -23,3 +25,19 @@ class Devices(models.Model):
     name = models.CharField(max_length=50)
     power = models.FloatField(default=10)
     category = models.CharField(max_length=1, choices=device_categories, default='p')
+
+    def __unicode__(self):
+        return self.name
+
+
+class Tasks(models.Model):
+    title = models.CharField(max_length=150)
+    device = models.ForeignKey(Devices)
+    start_time = models.DateTimeField(default=datetime.now)
+    duration = models.FloatField(default=15)
+    energy = models.FloatField(default=0.5)
+
+    def __unicode__(self):
+        return self.title
+
+
