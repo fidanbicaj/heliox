@@ -107,6 +107,12 @@ def add_device(request):
             return JsonResponse({'message': messages})
 
 
+@logged__in
 def remove_device(request):
-    if request.method=='DELETE':
-        pass
+    if request.method == 'POST':
+        name = request.POST.get("device_name", "")
+        if not Devices.objects.filter(name=name).exists():
+            Devices.objects.filter(name=name).delete()
+            return JsonResponse({'Type': 'success', 'Title': 'Good job', 'Message': 'Device successfully removed.'})
+        else:
+            return JsonResponse({'Type': 'error', 'Title': 'Something went wrong', 'Message': 'Device does not exist.'})
