@@ -24,6 +24,8 @@
         <link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.carousel.min.css' %}" rel="stylesheet" type="text/css" />
 		<link href="{% static 'main/assets/plugins/owl.carousel/dist/assets/owl.theme.green.min.css' %}" rel="stylesheet" type="text/css" />
 
+        <link href="{% static 'main/assets/plugins/custombox/css/custombox.css' %}" rel="stylesheet">
+
         <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -91,6 +93,42 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-2 card-box text-center">
+                            <h4 class="m-t-0 header-title"><b>Devices List</b></h4>
+                            <button class="btn btn-purple btn-rounded" onclick="show_modal('device_modal')">Add a new Device</button>
+                            <hr>
+                            <span class="label label-primary">Personal Devices</span>
+                            <br>
+                            <br>
+                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                                <div class="panel-body p-0">
+                                    <div class="">
+                                        <div id="owl-slider" class="owl-carousel">
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Phone</h3>
+                                                <p class="small text-white">100 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Laptop</h3>
+                                                <p class="small text-white">250 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">iPod</h3>
+                                                <p class="small text-white">150 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                        </div><!-- /#tiles-slide-1 -->
+                                    </div><!-- /.panel-body -->
+                                </div>
+                            </div>
+                            <hr>
                             <span class="label label-primary">Electronic Devices</span>
                             <br>
                             <br>
@@ -124,14 +162,43 @@
                                 </div>
                             </div>
                             <hr>
-                            <span class="label label-primary">House Devices</span>
+                            <span class="label label-primary">Electronic Devices</span>
                             <br>
                             <br>
+                            <div class="panel panel-default text-center slider-bg m-b-0" style="background: url({% static 'main/assets/images/outerspace.jpg' %});">
+                                <div class="panel-body p-0">
+                                    <div class="">
+                                        <div id="owl-slider" class="owl-carousel">
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Phone</h3>
+                                                <p class="small text-white">100 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">Laptop</h3>
+                                                <p class="small text-white">250 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                            <div class="item">
+                                                <h3 class="text-primary font-600">iPod</h3>
+                                                <p class="small text-white">150 watt</p>
+                                                <br>
+                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
+                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
+                                            </div>
+                                        </div><!-- /#tiles-slide-1 -->
+                                    </div><!-- /.panel-body -->
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-10">
                             <div class="card-box table-responsive">
                                 <h4 class="m-t-0 header-title"><b>Daily Tasks</b></h4>
-                                    <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">
+                                    <button type="button" class="btn btn-purple btn-rounded waves-effect waves-light">
                                            <span class="btn-label"><i class="fa fa-plus"></i>
                                            </span>Add new task</button>
 
@@ -150,6 +217,49 @@
                 </div>
             </div>
 
+      <div id="device_modal" class="modal-demo">
+            <div class="modal-dialog">
+                <div class="modal-content p-0 b-0">
+                    <div class="panel panel-color panel-purple">
+                        <div class="panel-heading">
+                            <button type="button" class="close" onclick="Custombox.close();">
+                                <span>&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            <h3 class="panel-title">Open Ticket</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group no-margin">
+                                <label class="control-label pull-left">Device Name</label>
+                                <input class="form-control" id='device_name' name='device_name' placeholder="Device Name" value="" required/>
+                                <br>
+                                <label class="control-label pull-left">Device Power ( watt )</label>
+                                <input class="form-control" type="number" id='device_power' name='device_power' placeholder="Device Power" value="" required/>
+                                <br>
+                                <label class="control-label pull-left">Device Category</label>
+                                <br>
+                                <hr>
+                                <div class="form-group">
+                                    <div class="radio radio-danger radio-inline pull-left">
+                                        <input type="radio" id="personal" value="personal" name="device_category" checked>
+                                        <label for="personal">Personal</label>
+                                    </div>
+                                    <div class="radio radio-danger radio-inline pull-left">
+                                        <input type="radio" id="electronic" value="electronic" name="device_category">
+                                        <label for="electronic">Electronic</label>
+                                    </div>
+                                    <div class="radio radio-danger radio-inline pull-left">
+                                        <input type="radio" id="house" value="house" name="device_category">
+                                        <label for="house">House Appliances</label>
+                                    </div>
+                                    <button class="btn btn-danger pull-right" id="submit_device">Add it</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div>
+        </div>
+
         <script src="{% static 'main/assets/js/jquery.min.js' %}"></script>
         <script src="{% static 'main/assets/js/bootstrap.min.js' %}"></script>
         <script src="{% static 'main/assets/js/detect.js'%}"></script>
@@ -164,7 +274,22 @@
         <script src="{% static 'main/assets/js/jquery.app.js' %}"></script>
 
         <script src="{% static 'main/assets/plugins/owl.carousel/dist/owl.carousel.min.js' %}"></script>
-        <script src="{% static 'main/assets/plugins/owl.carousel/dist/jquery.mousewheel.js' %}"></script>
+
+        <script src="{% static 'main/assets/plugins/custombox/js/custombox.min.js' %}"></script>
+        <script src="{% static 'main/assets/plugins/custombox/js/legacy.min.js' %}"></script>
+
+        <script type="text/javascript">
+            function show_modal(which_modal) {
+                $('#device_name').val("");
+                Custombox.open({
+                    target: '#'+which_modal,
+                    effect: 'blur',
+                    overlay: {
+                    	active: true
+                    }
+                });
+            }
+        </script>
 
         <script type="text/javascript">
             var owl = $('.owl-carousel');
@@ -174,14 +299,37 @@
                     items: 1,
                     autoplay: true
                 });
-                owl.on('mousewheel', '.owl-stage', function (e) {
-                    if (e.deltaY>0) {
-                        owl.trigger('next.owl');
-                    } else {
-                        owl.trigger('prev.owl');
-                    }
-                    e.preventDefault();
-                });
+        </script>
+
+
+        <script type="text/javascript">
+            $('#submit_device').click(function () {
+                var device_name = $('#device_name').val();
+                var device_power = $('#device_power').val();
+                var device_category = $('input[name=device_category]:checked').val();
+                $.ajax({
+                    type: 'POST',
+                    url : '{% url 'index' %}'
+                })
+            });
+            $.ajax({
+                  type : 'POST',
+                  url : '{% url 'buy' %}',
+                  dataType : "json",
+                  data: {id : id,
+                  second_id: "{{ second_id }}",
+                  csrfmiddlewaretoken: "{{ csrf_token }}"
+                  },
+                  success: function (json) {
+                      swal({
+                          title: json['Title'],
+                          text: json['Message'],
+                          type: json['Type'],
+                          confirmButtonText: "Cool",
+                          confirmButtonColor: "#34d3eb"
+                      });
+                  }
+              });
         </script>
 
     </body>
