@@ -31,6 +31,7 @@ def login(request):
                 if sha256_crypt.verify(password, user.password):
                     request.session['logged_in'] = True
                     request.session['username'] = username
+                    messages.add_message(request, messages.SUCCESS, 'Welcome %s' % username)
                     return HttpResponseRedirect('/')
                 else:
                     messages.add_message(request, messages.ERROR, 'Your password is incorrect')
