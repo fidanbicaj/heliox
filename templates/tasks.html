@@ -106,27 +106,15 @@
                                 <div class="panel-body p-0">
                                     <div class="">
                                         <div id="owl-slider" class="owl-carousel">
+                                            {% for item in personal_devices %}
                                             <div class="item">
-                                                <h3 class="text-primary font-600">Phone</h3>
-                                                <p class="small text-white">100 watt</p>
+                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                                <p class="small text-white">{{ item.power }} watt</p>
                                                 <br>
                                                 <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
                                                 <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
                                             </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">Laptop</h3>
-                                                <p class="small text-white">250 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">iPod</h3>
-                                                <p class="small text-white">150 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
+                                            {% endfor %}
                                         </div><!-- /#tiles-slide-1 -->
                                     </div><!-- /.panel-body -->
                                 </div>
@@ -139,27 +127,15 @@
                                 <div class="panel-body p-0">
                                     <div class="">
                                         <div id="owl-slider" class="owl-carousel">
+                                            {% for item in electronic_devices %}
                                             <div class="item">
-                                                <h3 class="text-primary font-600">Phone</h3>
-                                                <p class="small text-white">100 watt</p>
+                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                                <p class="small text-white">{{ item.power }} watt</p>
                                                 <br>
                                                 <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
                                                 <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
                                             </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">Laptop</h3>
-                                                <p class="small text-white">250 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">iPod</h3>
-                                                <p class="small text-white">150 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
+                                            {% endfor %}
                                         </div><!-- /#tiles-slide-1 -->
                                     </div><!-- /.panel-body -->
                                 </div>
@@ -172,27 +148,15 @@
                                 <div class="panel-body p-0">
                                     <div class="">
                                         <div id="owl-slider" class="owl-carousel">
+                                            {% for item in house_appliances %}
                                             <div class="item">
-                                                <h3 class="text-primary font-600">Phone</h3>
-                                                <p class="small text-white">100 watt</p>
+                                                <h3 class="text-primary font-600">{{ item.name }}</h3>
+                                                <p class="small text-white">{{ item.power }} watt</p>
                                                 <br>
                                                 <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
                                                 <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
                                             </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">Laptop</h3>
-                                                <p class="small text-white">250 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
-                                            <div class="item">
-                                                <h3 class="text-primary font-600">iPod</h3>
-                                                <p class="small text-white">150 watt</p>
-                                                <br>
-                                                <button class="btn btn-icon waves-effect btn-default waves-light"> <i class="fa fa-wrench"></i> </button>
-                                                <button class="btn btn-icon waves-effect btn-danger waves-light"> <i class="fa fa-remove"></i> </button>
-                                            </div>
+                                            {% endfor %}
                                         </div><!-- /#tiles-slide-1 -->
                                     </div><!-- /.panel-body -->
                                 </div>

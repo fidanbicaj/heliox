@@ -79,7 +79,11 @@ def index(request):
 @logged__in
 def tasks(request):
     personal_devices = Devices.objects.filter(category='p')
-    return render(request, 'tasks.html', {'personal_devices': personal_devices})
+    electronic_devices = Devices.objects.filter(category='e')
+    house_appliances = Devices.objects.filter(category='h')
+    return render(request, 'tasks.html', {'personal_devices': personal_devices,
+                                          'electronic_devices': electronic_devices,
+                                          'house_appliances': house_appliances})
 
 
 @logged__in
