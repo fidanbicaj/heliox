@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.db import models
-from datetime import datetime
 
 # Create your models here.
 
@@ -12,13 +11,3 @@ class Users(models.Model):
 
     def __unicode__(self):
         return self.username
-
-
-class Tasks(models.Model):
-    title = models.CharField(max_length=150)
-    #device = models.ForeignKey()
-    start_time = models.DateTimeField(default=datetime.now)
-    duration = models.FloatField(default=15.0)
-    energy = models.FloatField(default=10.0)
-    active = models.BooleanField(default=False)
-
