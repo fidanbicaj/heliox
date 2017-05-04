@@ -95,7 +95,7 @@ def add_device(request):
         category = request.POST.get("device_category", "")
         if not Devices.objects.filter(name=name).exists():
             if name and power and category:
-                Devices(name=name, power=power, category=category[0]).save()
+                # Devices(name=name, power=power, category=category[0]).save()
                 json_response['Type'] = 'success'
                 json_response['Title'] = 'Good job'
                 json_response['Message'] = 'Device successfully added.'
@@ -114,10 +114,17 @@ def add_device(request):
 
 @logged__in
 def remove_device(request):
+    json_response = {}
     if request.method == 'POST':
         name = request.POST.get("device_name", "")
         if not Devices.objects.filter(name=name).exists():
             Devices.objects.filter(name=name).delete()
-            return JsonResponse({'Type': 'success', 'Title': 'Good job', 'Message': 'Device successfully removed.'})
+            json_response['Type'] = 'success'
+            json_response['Title'] = 'Good Job'
+            json_response['Message'] = 'Device successfully removed.'
+            return JsonResponse(json_response)
         else:
-            return JsonResponse({'Type': 'error', 'Title': 'Something went wrong', 'Message': 'Device does not exist.'})
+            json_response['Type'] = 'error'
+            json_response['Title'] = 'Something went wrong'
+            json_response['Message'] = 'Device does not exist.'
+            return JsonResponse(json_response)
