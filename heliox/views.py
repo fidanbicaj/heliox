@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden
-from .models import Users
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseForbidden, JsonResponse
+from .models import Users, Devices, Tasks
 from passlib.hash import sha256_crypt
 from django.contrib import messages
 from django.core.validators import validate_email
@@ -64,7 +64,6 @@ def login(request):
     return render(request, 'login.html', {})
 
 
-
 def logout(request):
     request.session.flush()
     return HttpResponseRedirect('/login')
@@ -80,3 +79,40 @@ def index(request):
 @logged__in
 def tasks(request):
     return render(request, 'tasks.html', {})
+
+
+@logged__in
+def add_device(request):
+    json_response = {}
+    if request.method=='POST':
+        name = request.POST.get("device_name", "")
+        power = request.POST.get("device_power", "")
+        category = request.POST.get("device_category", "")
+        if not Devices.objects.filter(name=name).exists():
+            if name and power and category:
+                Devices(name=name, power=power, category=category[0]).save()
+                json_response['Type'] = 'success'
+                json_response['Title'] = 'Good job'
+                json_response['Message'] = 'Device successfully added.'
+                return JsonResponse(json_response)
+            else:
+                json_response['Type'] = 'error'
+                json_response['Title'] = 'Try again'
+                json_response['Message'] = 'Please fill all fields.'
+                return JsonResponse({'message': messages})
+        else:
+            json_response['Type'] = 'error'
+            json_response['Title'] = 'Try again'
+            json_response['Message'] = 'Device already exists.'
+            return JsonResponse({'message': messages})
+
+
+@logged__in
+def remove_device(request):
+    if request.method == 'POST':
+        name = request.POST.get("device_name", "")
+        if not Devices.objects.filter(name=name).exists():
+            Devices.objects.filter(name=name).delete()
+            return JsonResponse({'Type': 'success', 'Title': 'Good job', 'Message': 'Device successfully removed.'})
+        else:
+            return JsonResponse({'Type': 'error', 'Title': 'Something went wrong', 'Message': 'Device does not exist.'})
