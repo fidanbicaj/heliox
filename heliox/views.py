@@ -78,7 +78,8 @@ def index(request):
 
 @logged__in
 def tasks(request):
-    return render(request, 'tasks.html', {})
+    personal_devices = Devices.objects.filter(category='p')
+    return render(request, 'tasks.html', {'personal_devices': personal_devices})
 
 
 @logged__in
@@ -99,12 +100,12 @@ def add_device(request):
                 json_response['Type'] = 'error'
                 json_response['Title'] = 'Try again'
                 json_response['Message'] = 'Please fill all fields.'
-                return JsonResponse({'message': messages})
+                return JsonResponse(json_response)
         else:
             json_response['Type'] = 'error'
             json_response['Title'] = 'Try again'
             json_response['Message'] = 'Device already exists.'
-            return JsonResponse({'message': messages})
+            return JsonResponse(json_response)
 
 
 @logged__in
